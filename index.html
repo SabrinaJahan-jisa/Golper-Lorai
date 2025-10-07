@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - Golper Lorai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: var(--black); background-color: var(--white); line-height: 1.7; font-weight: 400; }
+        h1, h2, h3, h4, h5 { font-family: 'Merriweather', serif; font-weight: 700; line-height: 1.3; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Header & Navigation (Copied from Homepage) --- */
+        header { background-color: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 0 20px; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+        .logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 32px; color: var(--black); letter-spacing: -0.5px; }
+        .logo span { color: var(--yellow); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 40px; }
+        .nav-links a { text-decoration: none; color: var(--black); font-weight: 500; font-size: 16px; transition: color 0.3s; position: relative; padding: 5px 0; }
+        .nav-links a:hover { color: var(--yellow); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--yellow); transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); }
+        .nav-links a:hover::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 26px; color: var(--black); z-index: 1001; }
+
+        /* --- Footer (Copied from Homepage) --- */
+        footer { background-color: var(--black); color: var(--white); padding: 100px 0 40px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 32px; margin-bottom: 25px; display: block; letter-spacing: -0.5px; }
+        .footer-logo span { color: var(--yellow); }
+        .footer-about p { color: rgba(255, 255, 255, 0.7); margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; font-weight: 300; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.08); color: var(--white); transition: all 0.3s ease; font-size: 18px; }
+        .social-links a:hover { background-color: var(--yellow); color: var(--black); transform: translateY(-3px); }
+        .footer-links h4 { font-size: 1.35rem; margin-bottom: 25px; position: relative; padding-bottom: 12px; font-family: 'Poppins', sans-serif; color: var(--white); }
+        .footer-links h4::after { content: ''; position: absolute; width: 50px; height: 3px; background-color: var(--yellow); bottom: 0; left: 0; border-radius: 2px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: rgba(255, 255, 255, 0.7); transition: color 0.3s; font-weight: 300; display: block; padding: 5px 0; }
+        .footer-links a:hover { color: var(--yellow); padding-left: 5px; }
+        .footer-links a i { margin-right: 10px; width: 20px; text-align: center; }
+        .copyright { text-align: center; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 0.95rem; font-weight: 300; }
+        
+        /* --- Styles for Blog Details Page --- */
+        .post-wrapper { padding: 80px 0; }
+        .post-container { max-width: 800px; margin: 0 auto; }
+
+        .breadcrumbs { margin-bottom: 25px; font-size: 0.9rem; color: var(--dark-gray); }
+        .breadcrumbs a:hover { color: var(--black); }
+        .breadcrumbs span { color: #aaa; margin: 0 5px;}
+
+        .post-header h1 { font-size: 3.25rem; line-height: 1.2; margin-bottom: 20px; }
+        .post-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+        .post-meta .author-avatar { width: 50px; height: 50px; border-radius: 50%; background-color: var(--gray); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 1.2rem; }
+        .post-meta .author-info p { margin: 0; line-height: 1.4; }
+        .post-meta .author-info .name { font-weight: 600; }
+        .post-meta .author-info .date { font-size: 0.9rem; color: #666; }
+
+        .featured-image { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 50px; box-shadow: var(--card-shadow); }
+        .featured-image img { width: 100%; display: block; }
+        
+        .post-content { font-family: 'Merriweather', serif; font-size: 1.15rem; line-height: 2; color: #333; }
+        .post-content p { margin-bottom: 1.5em; }
+        .post-content h2 { font-family: 'Poppins', sans-serif; font-size: 2rem; margin-top: 2.5em; margin-bottom: 1em; line-height: 1.3; }
+        .post-content h3 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; margin-top: 2em; margin-bottom: 0.8em; line-height: 1.4; }
+        .post-content a { color: var(--black); font-weight: 600; text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 3px; }
+        .post-content blockquote { margin: 2em 0; padding: 25px 30px; background-color: var(--gray); border-left: 5px solid var(--yellow); font-style: italic; font-size: 1.25rem; color: var(--dark-gray); }
+        .post-content ul, .post-content ol { padding-left: 25px; margin-bottom: 1.5em; }
+        .post-content li { margin-bottom: 0.8em; }
+
+        .post-footer { border-top: 1px solid var(--light-gray); margin-top: 50px; padding-top: 40px; }
+        .share-section { display: flex; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 50px; }
+        .share-section p { font-weight: 500; font-size: 1.1rem; margin-right: 10px; }
+        .share-btn { font-size: 1.2rem; color: var(--dark-gray); width: 45px; height: 45px; border-radius: 50%; background-color: var(--gray); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .share-btn:hover { background-color: var(--yellow); color: var(--black); transform: translateY(-2px); }
+
+        .post-navigation { display: flex; justify-content: space-between; border-top: 1px solid var(--light-gray); padding-top: 30px; }
+        .nav-link { flex-basis: 48%; text-align: left; padding: 20px; border: 1px solid var(--light-gray); border-radius: 12px; transition: all 0.3s ease; }
+        .nav-link:hover { border-color: var(--yellow); background-color: #fffde7; }
+        .nav-link.next { text-align: right; }
+        .nav-link span { font-size: 0.9rem; color: #777; display: block; margin-bottom: 5px; }
+        .nav-link p { font-weight: 600; line-height: 1.4; }
+        .nav-link.hidden { display: none; }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 900px) {
+            .nav-links { position: fixed; top: 0; right: -100%; flex-direction: column; background-color: var(--white); width: 300px; height: 100vh; padding: 100px 40px 40px; transition: right 0.4s ease; box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08); z-index: 1000; }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 0 0 25px 0; }
+            .hamburger { display: block; }
+        }
+        @media(max-width: 600px) {
+            .container { padding: 0 20px; }
+            .post-wrapper { padding: 60px 0; }
+            .post-header h1 { font-size: 2.25rem; }
+            .post-content { font-size: 1.1rem; line-height: 1.9; }
+            .post-navigation { flex-direction: column; gap: 20px; }
+            .nav-link { flex-basis: 100%; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-links h4::after { left: 50%; transform: translateX(-50%); }
+            .social-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Golper<span>Lorai</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="stories.html">Story</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="post-wrapper">
+            <div class="post-container" id="post-container">
+                <!-- Fallback message -->
+                <p>Loading post...</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">Golper<span>Lorai</span></a>
+                    <p>Bangladesh's premier platform for writers to showcase their talent, compete in challenges, and gain recognition for their literary works.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="stories.html"><i class="fas fa-chevron-right"></i> Story</a></li>
+                        <li><a href="leaderboard.html"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Competition Rules</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Writing Tips</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@golperlorai.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +880 015 75139178</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Dhanmondi, Dhaka</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2025 Golper Lorai. All rights reserved. Celebrating the art of storytelling.</p></div>
+        </div>
+    </footer>
+
+    <script>
+    // --- Mobile Menu Toggle ---
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.innerHTML = navLinks.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // --- Single Post Functionality ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const blogPosts = [
+            { id: 1, title: "5 Ways to Overcome Writer's Block", author: "Jane Doe", date: "2025-06-18", imageUrl: "https://placehold.co/1200x600/2F3E46/FFFFFF?text=Overcoming+Writer's+Block", content: "<h2>Technique 1: The 'Freewriting' Sprint</h2><p>Set a timer for 10 minutes and just write. Don't worry about grammar, spelling, or even making sense. The goal is to get words on the page and break the inertia. You can write about your day, the color of the wall, or anything at all. More often than not, this simple exercise can unlock the part of your brain that was feeling stuck.</p><blockquote>The easiest way to get started is to just start. Don't overthink it.</blockquote><h3>Step-by-step:</h3><ul><li>Open a blank document.</li><li>Set a timer for 10-15 minutes.</li><li>Write continuously until the timer goes off. Do not stop to edit or correct yourself.</li><li>Review what you've written. You might find a sentence or an idea you can build upon.</li></ul><h2>Technique 2: Change Your Environment</h2><p>Sometimes a change of scenery is all you need. If you always write at your desk, try moving to a coffee shop, a library, or a park bench. The new sounds, sights, and smells can stimulate your senses and give your brain a fresh perspective on your story or article.</p>" },
+            { id: 2, title: "Announcing the July Short Story Competition", author: "Golper Lorai Team", date: "2025-06-15", imageUrl: "https://placehold.co/1200x600/FFD700/000000?text=July+Competition", content: "<p>We are incredibly excited to launch our next creative challenge for the talented writers in our community. The theme for the July 2025 Short Story Competition is...</p><h2>'Future Folklore'</h2><p>What does this mean? We want you to imagine the myths, legends, and folktales of tomorrow. What stories will people in Bangladesh tell their children in the year 2125? Will they be tales of AI spirits, climate change legends, or heroic space explorers from Dhaka? Let your imagination run wild!</p><h3>Prizes:</h3><p>The winner will receive a grand prize and be featured on our homepage for the entire month of August. All top-three stories will be published permanently in our 'Hall of Fame'.</p>" },
+            { id: 3, title: "An Interview with Last Month's Winner, Anis Ahmed", author: "Admin", date: "2025-06-10", imageUrl: "https://placehold.co/1200x600/52796F/FFFFFF?text=Interview", content: "<p>We sat down with Anis Ahmed, the talented winner of our May competition, to discuss his winning story, 'The Rickshaw Painter', and his journey as a writer in Bangladesh.</p><h2>The Inspiration</h2><p>Anis shared, 'The inspiration came from simply walking through the streets of Old Dhaka. Every rickshaw tells a story with its art, and I wanted to capture the spirit of the artists who pour their hearts onto these moving canvases.' It's a powerful reminder that stories are all around us.</p>" }
+        ];
+        
+        const postContainer = document.getElementById('post-container');
+        const getPostId = () => new URLSearchParams(window.location.search).get('id');
+        
+        const renderPost = (post, prevPost, nextPost) => {
+            if (!post) {
+                postContainer.innerHTML = '<h1>Post Not Found</h1><p>The article you are looking for does not exist or has been moved.</p>';
+                return;
+            }
+            
+            document.title = `${post.title} - Golper Lorai`;
+            const formattedDate = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            const prevLink = prevPost ? `<a href="blog-details.html?id=${prevPost.id}" class="nav-link prev"><span>&larr; Previous Post</span><p>${prevPost.title}</p></a>` : `<div class="nav-link hidden"></div>`;
+            const nextLink = nextPost ? `<a href="blog-details.html?id=${nextPost.id}" class="nav-link next"><span>Next Post &rarr;</span><p>${nextPost.title}</p></a>` : `<div class="nav-link hidden"></div>`;
+
+            postContainer.innerHTML = `
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a><span>/</span><a href="blog.html">Blog</a><span>/</span>${post.title}
+                </div>
+                <article>
+                    <div class="post-header">
+                        <h1>${post.title}</h1>
+                        <div class="post-meta">
+                            <div class="author-avatar">${post.author.split(' ').map(n=>n[0]).join('')}</div>
+                            <div class="author-info">
+                                <p class="name">${post.author}</p>
+                                <p class="date">${formattedDate}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="featured-image">
+                        <img src="${post.imageUrl}" alt="${post.title}">
+                    </div>
+                    <div class="post-content">
+                        ${post.content}
+                    </div>
+                    <div class="post-footer">
+                        <div class="share-section">
+                            <p>Share this post:</p>
+                            <a href="#" class="share-btn" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-btn" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <button id="copy-link-btn" class="share-btn" aria-label="Copy Link"><i class="fas fa-link"></i></button>
+                        </div>
+                        <div class="post-navigation">
+                            ${prevLink}
+                            ${nextLink}
+                        </div>
+                    </div>
+                </article>
+            `;
+
+            document.getElementById('copy-link-btn').addEventListener('click', (e) => {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    const icon = e.currentTarget.querySelector('i');
+                    icon.className = 'fas fa-check';
+                    setTimeout(() => { icon.className = 'fas fa-link'; }, 1500);
+                });
+            });
+        };
+
+        const postId = parseInt(getPostId(), 10) || 1;
+        const currentPostIndex = blogPosts.findIndex(p => p.id === postId);
+        
+        if (currentPostIndex !== -1) {
+            const postToRender = blogPosts[currentPostIndex];
+            const prevPost = currentPostIndex > 0 ? blogPosts[currentPostIndex - 1] : null;
+            const nextPost = currentPostIndex < blogPosts.length - 1 ? blogPosts[currentPostIndex + 1] : null;
+            renderPost(postToRender, prevPost, nextPost);
+        } else {
+             renderPost(null); // Render post not found
+        }
+    });
+    </script>
+</body>
+</html>

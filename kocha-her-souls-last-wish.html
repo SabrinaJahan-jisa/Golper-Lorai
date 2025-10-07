@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golper Lorai - KOCHA, HER SOUL’S LAST WISH</title> <!-- Dynamic title based on story -->
+    <!-- Google Fonts: Merriweather for headings, Poppins for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables - DO NOT CHANGE */
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --section-padding: 100px 0;
+        }
+        
+        /* Base Styles - DO NOT CHANGE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Buttons - DO NOT CHANGE */
+        .btn {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.35);
+        }
+        
+        .btn-accent {
+            background-color: var(--yellow);
+            color: var(--black);
+            font-weight: 700;
+        }
+        
+        .btn-accent:hover {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-sm { /* Smaller button for story cards */
+            padding: 10px 25px;
+            font-size: 13px;
+            border-radius: 30px;
+        }
+        
+        /* Header & Navigation - DO NOT CHANGE */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Adds space between image and text */
+        }
+        
+        .logo img {
+            height: 40px; 
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--black);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--yellow);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--yellow);
+            transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active::after { /* Active link indicator */
+            width: 100%;
+        }
+
+        .nav-links a.active { /* Active link color */
+            color: var(--yellow);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: var(--black);
+            z-index: 1001;
+        }
+        
+        /* Section Styling - DO NOT CHANGE */
+        section {
+            padding: var(--section-padding);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-weight: 300;
+        }
+        
+        /* Footer - DO NOT CHANGE */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-logo {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 25px;
+            display: block;
+            letter-spacing: -0.5px;
+        }
+        
+        .footer-logo span {
+            color: var(--yellow);
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h4 {
+            font-size: 1.35rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 300;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--yellow);
+            padding-left: 5px;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+        
+        /* Single Story Page Specific Styles */
+        .single-story-header {
+            background: linear-gradient(120deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.92) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="white"/><path d="M0,0 L200,200 M200,0 L0,200" stroke="%23FFD700" stroke-width="1.2" opacity="0.08"/></svg>');
+            background-size: 180px;
+            padding: 80px 0; /* Reduced padding for header */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--light-gray); /* Separator */
+        }
+        
+        .single-story-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, rgba(255,215,0,0) 70%);
+            z-index: 0;
+        }
+        
+        .single-story-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px; /* Wider for story content */
+            margin: 0 auto;
+        }
+        
+        .single-story-header h1 {
+            font-size: 3.5rem; /* Slightly smaller for single story title */
+            margin-bottom: 25px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            color: var(--black);
+        }
+        
+        .single-story-author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center author info */
+            margin-bottom: 20px;
+        }
+
+        .single-story-author-avatar {
+            width: 60px; /* Larger avatar */
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700 0%, #FFC000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--black);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .single-story-author-name {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .single-story-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center meta items */
+            gap: 15px 30px; /* Increased gap */
+            margin-bottom: 30px;
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .single-story-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .single-story-meta-item i {
+            color: var(--yellow);
+            font-size: 1em;
+        }
+
+        .single-story-share-button {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: inline-flex; /* For icon and text alignment */
+            align-items: center;
+            gap: 8px;
+        }
+
+        .single-story-share-button:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.35);
+        }
+
+        /* Main Story Content Area */
+        .story-main-content {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+
+        .story-text {
+            max-width: 800px; /* Optimal width for reading */
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--dark-gray);
+            text-align: justify; /* Justify text for better readability */
+        }
+
+        .story-text h2, .story-text h3, .story-text h4 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+        }
+
+        .story-text ul, .story-text ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        .story-text li {
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Design - DO NOT CHANGE */
+        @media (max-width: 1100px) {
+            .single-story-header h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 300px;
+                height: 100vh;
+                padding: 100px 40px 40px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0 0 25px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .single-story-header {
+                padding: 100px 0 70px;
+            }
+            
+            .single-story-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            section { /* Reduced padding for smaller screens */
+                 padding: 60px 0; /* Adjusted for single story content */
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .single-story-header {
+                padding: 80px 0 50px;
+            }
+            
+            .single-story-header h1 {
+                font-size: 2rem;
+            }
+            
+            .single-story-author-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .single-story-author-avatar {
+                margin-right: 0;
+            }
+
+            .single-story-meta {
+                flex-direction: column; /* Stack meta items vertically on very small screens */
+                gap: 8px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-links h4 {
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .single-story-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.05rem;
+            }
+
+            .logo-text {
+                display: none; /* Hide logo text on very small screens */
+            }
+            .story-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <!-- Using a placeholder image as local paths are not supported in this environment -->
+                    <img src="https://placehold.co/40x40/FFD700/121212?text=GL" alt="Golper Lorai Logo">
+                    <span class="logo-text">Golper<span>Lorai</span></span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/story" class="active">Story</a></li> <!-- Active class for current page -->
+                    <li><a href="/leaderboard">Leaderboard</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Single Story Header Section (Page Header / Story Meta Info) -->
+    <section class="single-story-header">
+        <div class="container">
+            <div class="single-story-header-content">
+                <h1>KOCHA, HER SOUL’S LAST WISH</h1> <!-- Story Title -->
+                <div class="single-story-author-info">
+                    <div class="single-story-author-avatar">AH</div> <!-- Placeholder for author initials -->
+                    <span class="single-story-author-name">Anika Hassan</span> <!-- Author Name -->
+                </div>
+                <div class="single-story-meta">
+                    <span class="single-story-meta-item"><i class="fas fa-bookmark"></i> Big Story</span> <!-- Category -->
+                    <span class="single-story-meta-item"><i class="fas fa-globe"></i> English</span> <!-- Language -->
+                    <span class="single-story-meta-item"><i class="fas fa-file-word"></i> 5000 Words</span> <!-- Placeholder Word Count -->
+                    <span class="single-story-meta-item"><i class="fas fa-calendar-alt"></i> Published on July 16, 2025</span> <!-- Published Date -->
+                </div>
+                <button class="single-story-share-button" onclick="copyStoryLink('/story/kocha-her-souls-last-wish')">
+                    <i class="fas fa-share-alt"></i> Share Story
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Story Content Area -->
+    <section class="story-main-content">
+        <div class="container">
+            <div class="story-text">
+                <h2>Part I: Where All Stories Begin</h2>
+                <p>Once upon a time—not in a kingdom, nor in a forest, but in the forgotten veins of a sleeping city—something ancient stirred. The night had teeth that bit through skin, and shadows that swallowed sound. Wind hissed through rusted fire escapes, and the air was thick with the scent of rot, gasoline, and something almost sweet—like memory gone sour.</p>
+                
+                <p>In a crooked alley that no map bothered to name, where the moonlight was thinned to a mere thread and the stars turned their faces away, a child was born into the quiet violence of abandonment.</p>
+                
+                <p>Some children are born into warm arms and lullabies. Into waiting hands and rooms painted soft colors. Into stories whispered before sleep. But not her.</p>
+                
+                <p>The first sound she ever made was a cry so sharp it cut through the cold night air like a warning. A sound that didn't belong in a place like that. The first thing she ever saw was darkness—and above her, a sliver of indifferent moon, staring down like a lone watcher. No stars. No warmth. No welcome.</p>
+                
+                <p>She was wrapped in nothing but a torn piece of cloth that might have once been a shirt, or a curtain, or someone's last hope. Her skin was new, untouched by love, and already kissed by abandonment. No name. No lullaby. No mother’s heartbeat. Just garbage. And the cold.</p>
+                
+                <p>The alley didn’t stir. The rats paused, watching with bright, twitching eyes from behind bent crates. The buildings leaned in like old men holding their breath. No one came. No one saw. But something else did.</p>
+                
+                <p>A flutter.</p>
+                
+                <p>Wings—small, iridescent—stirred the still air. A single butterfly, impossible in the dead of night, circled above the newborn, as if unsure whether to land or leave. It hovered. Waited. Its wings shimmered with indigo specks, catching stray beams of moonlight like fragments of a dream. It was beautiful in a way that didn’t make sense there—delicate against decay.</p>
+                
+                <p>And then came him.</p>
+                
+                <p>He didn’t walk. He arrived.</p>
+                
+                <p>A figure cloaked in the thinnest veil of light, barely tethered to the world. His eyes not quite human but full of something ancient—sorrow, maybe, or the weight of knowing too much. He moved like someone made of silence. He knelt beside the crying child without hesitation, hands trembling as he lifted her from the garbage like she was the rarest thing the world had forgotten. Dirt flaked from her cheek. Her cry softened.</p>
+                
+                <p>He whispered something no one heard. Not even the moon. Not even the butterfly. Words that curled into the newborn’s skin like a secret spell. Then, just like that—he vanished.</p>
+                
+                <p>Moments later, a knock echoed through the silent halls of the local orphanage. Three soft raps. No one in sight. Just a tiny bundle on the doorstep. Crying. Alive. Breathing. With one butterfly still clinging to the cloth beside her cheek like a tiny sentinel.</p>
+                
+                <p>That night, the caretaker named her Dephne.</p>
+                
+                <p>Dephne grew like wild grass—strong, curious, and difficult to ignore. She had hair the color of dusk and eyes too wide for someone who didn’t know where she came from. There was something in her gaze—like she was always listening to a language no one else could hear. The other children sometimes teased her. Called her “Trash Baby” behind her back, like it was a curse, like the beginning of her story was a stain she could never scrub out.</p>
+                
+                <p>But Dephne didn’t cry. She had learned early that tears only mattered if someone was watching.</p>
+                
+                <p>Instead, she wandered.</p>
+                
+                <p>Her escape was the garden behind the orphanage—overgrown, wild, forgotten like her. The gate creaked with protest every time she pushed through it, and the brambles scratched her skin like they were testing her right to be there. But once inside, she felt safe. There, the trees whispered secrets, and the wind sang lullabies she imagined came from someone who once wanted her. The garden became her church, her sanctuary, her page.</p>
+                
+                <p>But more than the wind or the trees or the books she loved to bury herself in, Dephne had one constant companion.</p>
+                
+                <p>The butterfly.</p>
+                
+                <p>It wasn’t always the same one, and yet… it was. It looked the same. Shimmering wings with indigo specks, always glowing just a little too brightly, like it didn’t quite belong to this world. It never flew too far. Never left her for more than a few moments. The other children thought she was odd for talking to it. For sitting with it like it was a person. But Dephne didn’t care.</p>
+                
+                <p>She whispered her fears to it. Her dreams. Her stories.</p>
+                
+                <p>“I think I came from nowhere,” she told it once, her fingers resting gently on a daisy’s bent stem. “But maybe that means I can go anywhere.”</p>
+                
+                <p>Sometimes, it landed on her fingertips and stayed there until she stopped crying. She never named it. She just… knew it. As if it had always been there. Watching. Waiting.</p>
+                
+                <p>The years folded like worn pages.</p>
+                
+                <p>By the time she was seventeen, Dephne had mastered the art of looking fine. She smiled when people asked how she was. She laughed at things that didn’t amuse her. She had become something soft on the outside and unbreakable underneath. But deep inside, she still waited. For what—she didn’t know. A face. A feeling. A truth. She didn’t believe in magic. Not really.</p>
+                
+                <p>But she believed in the butterfly.</p>
+                
+                <p>And that had to mean something.</p>
+                
+                <p>There was a week in early spring when the garden turned into something close to a dream.</p>
+                
+                <p>The air smelled of thawed earth and new beginnings, and the wind carried hints of something warm, something ancient. Dephne spent hours beneath the tangled branches of the old willow tree, where sunlight trickled through like golden syrup. She had brought a book with her, but she never opened it. The butterfly had returned that morning—earlier than usual, as if it couldn’t stay away either.</p>
+                
+                <p>It perched on her shoulder, as still as a secret.</p>
+                
+                <p>“You know,” she whispered, her fingers brushing the grass, “if I didn’t know better, I’d think you’re not a butterfly at all. Maybe you’re someone who forgot how to speak in any language but wings.”</p>
+                
+                <p>It fluttered once—just once—and then settled again. As if it understood.</p>
+                
+                <p>She smiled.</p>
+                
+                <p>“What a strange pair we make. A girl born in a place that didn’t want her, and a butterfly who behaves like it remembers things it shouldn’t.”</p>
+                
+                <p>Sometimes she wondered if it was magic. Not the kind from books, with wands or spells or ancient prophecies. But quieter magic. The kind that arrived in silences. In the way the butterfly always knew when she was lonely. In how it never landed on anyone else.</p>
+                
+                <p>One afternoon, she brought a mirror to the garden. A tiny one, cracked on one corner. She placed it on the stone path and watched the butterfly land beside its reflection.</p>
+                
+                <p>“You see yourself, don’t you?” she asked.</p>
+                
+                <p>But it didn’t move. It just sat there, wings open wide, facing its own image. Dephne tilted her head. Something about it made her chest ache.</p>
+                
+                <p>“Do you miss who you were?” she asked softly, though she didn’t know why those words came. They felt like they weren’t hers. Like they’d slipped from some deeper part of her.</p>
+                
+                <p>The butterfly rose into the air and circled her once, twice—then brushed gently against her cheek before vanishing into the sunlight.</p>
+                
+                <p>That night, she dreamed.</p>
+                
+                <p>She stood in the middle of the garden, barefoot, wearing a dress the color of moonlight. The butterfly hovered before her, glowing faintly in the dark. Then, without warning, it burst into a thousand tiny stars. And from that light stepped a boy.</p>
+                
+                <p>He looked at her like he already knew her. Like he’d waited a thousand years for her to recognize him.</p>
+                
+                <p>But before she could move—before she could even speak—he touched her wrist and whispered, "Not yet."</p>
+                
+                <p>She woke up with his voice ringing in her ears, soft as a promise, heavy as a prophecy.</p>
+                
+                <p>Dephne didn’t tell anyone about the dream. But she returned to the garden every day after that, and she waited—not for answers, but for that strange, sacred feeling.</p>
+                
+                <p>She didn’t know it yet, but time was folding in on itself.</p>
+                
+                <p>And the next time the butterfly landed on her heart, something would begin to awaken.</p>
+                
+                <p>The orphanage had a tradition. On each child’s eighteenth birthday, they were given a cake, a wish, and the final choice of where to go next. Some moved into foster programs. Others found jobs. A few just vanished into the city, trying to start over. Most didn’t look back.</p>
+                
+                <p>Dephne didn’t know where she would go. She only knew what she wanted. Which wasn’t the same thing.</p>
+                
+                <p>On the eve of her eighteenth, the butterfly didn’t come.</p>
+                
+                <p>For the first time in years, it was gone.</p>
+                
+                <p>She searched the garden. Waited by the tree where it always landed. Whispered its name that wasn’t a name into the wind. Nothing. The air was still. The night too quiet. The sky hung low with clouds that looked like bruises. The world felt a little more ordinary.</p>
+                
+                <p>She waited until the sky grew dark, until every candle was in place and the other kids were watching her with their usual mix of curiosity and jealousy. She leaned over the cake. Closed her eyes. Hands together. Heart trembling.</p>
+                
+                <p>“Oh dear God,” she whispered. “Make the butterfly… a person.”</p>
+                
+                <p>It was stupid. She knew that. Childish, even. But the ache in her chest felt real, and wishes weren’t supposed to make sense.</p>
+                
+                <p>She opened her eyes. Blew out the candles.</p>
+                
+                <p>Nothing happened.</p>
+                
+                <p>Of course.</p>
+                
+                <p>She laughed softly, shaking her head. “Stupid,” she muttered.</p>
+                
+                <p>The room moved on. Laughter. Music from a dusty speaker. Dephne sat alone by the window, fingers tracing circles on the table.</p>
+                
+                <p>But somewhere in the corner of the room, a window cracked open—though no wind had touched it.</p>
+                
+                <p>And something flew in.</p>
+                
+                <p>Beautiful.</p>
+                
+                <p>And the air changed.</p>
+                
+                <h2>Part II: The Stranger in the Wings</h2>
+                <p>The morning after her eighteenth birthday, Dephne woke to a silence that didn’t just exist—it waited. It lingered like something unsaid, unfinished. The butterfly was gone.</p>
+                
+                <p>She told herself she didn’t care. That she was grown now, an adult, not the sort to place her faith in wings and wishes. She told herself butterflies weren’t promises. They were just creatures with short lives and fragile bones. She tried to believe it.</p>
+                
+                <p>But the world disagreed.</p>
+                
+                <p>Something felt… off. The sky was the wrong kind of blue, the kind that was too perfect, too polished, like a lie someone had painted over the truth. The garden behind the orphanage—the only place that had ever held her like it meant it—felt different too. Still. Breathless. As though it had exhaled and forgotten how to inhale again.</p>
+                
+                <p>Even her reflection felt foreign. She looked into the mirror and saw someone unformed. Her face was there, but it lacked the usual spark, the invisible thing that made her feel alive. Like a portrait missing its final stroke. Like the frame was full, but the girl had left.</p>
+                
+                <p>All morning, she drifted through chores in a daze. She forgot to butter the bread before toasting it. Forgot to add sugar to the tea. The caretaker scolded her softly, but Dephne barely heard. She moved like someone walking underwater, each moment too slow, too heavy.</p>
+                
+                <p>Turning eighteen wasn’t supposed to feel like this.</p>
+                
+                <p>By afternoon, she had decided: it wasn’t about growing up. It was about the loss. The absence of something small and shimmering that had always been there, quietly anchoring her. Her butterfly.</p>
+                
+                <p>She was returning from the corner shop with a bag of essentials—soap, bread, and a bruised apple she couldn't resist rescuing—when it happened. The crack in the ordinary.</p>
+                
+                <p>A sound.</p>
+                
+                <p>Not a voice, not at first. A hum, maybe. Then a murmur. A thread of song, pulled from someplace distant. A lullaby. But not any lullaby—hers. The one she had made up on nights she couldn’t sleep. The one she sang to the butterfly when it landed on her pillow and listened.</p>
+                
+                <p>She froze.</p>
+                
+                <p>The alley stretched in front of her, sharp with sunlight and shadows. At the far end, just beneath the rusted bus stop shelter, someone sat. A boy. No—not a boy. Not quite. Young, yes, but too still to be ordinary. His presence was... unsettling in its beauty. Like a statue come to life.</p>
+                
+                <p>His fingers danced through the air, drawing invisible lines. His skin had the soft gleam of dew, and his hair was a storm of black curls that moved even when the wind didn’t. But it was his eyes that shattered her—indigo, impossibly familiar.</p>
+                
+                <p>He looked up, and smiled.</p>
+                
+                <p>"Hello," he said, voice a quiet hum. "You found me."</p>
+                
+                <p>Dephne stood frozen. Her bag cut into her fingers. “What?”</p>
+                
+                <p>He stood slowly, gracefully. His movements were deliberate, as if the earth beneath him might splinter if he stepped too quickly. He was tall. Ethereal. Terrifyingly familiar.</p>
+                
+                <p>“Who are you?” she asked.</p>
+                
+                <p>“I don’t know yet.”</p>
+                
+                <p>She blinked. “That’s not funny.”</p>
+                
+                <p>“I’m not trying to be.”</p>
+                
+                <p>“You’re following me.”</p>
+                
+                <p>“No.”</p>
+                
+                <p>“You’re—you're insane.”</p>
+                
+                <p>“Possibly,” he said with a soft grin.</p>
+                
+                <p>Every instinct told her to run. But something in her feet stayed planted. Something old. The same part of her that whispered to wings and dreamed in impossible colors.</p>
+                
+                <p>“Why were you singing that song?” she asked.</p>
+                
+                <p>He tilted his head, like the question required translation. “Because you sang it to me.”</p>
+                
+                <p>“No. No, I never sang it aloud.”</p>
+                
+                <p>“Not with your mouth,” he said. “But I remember.”</p>
+                
+                <p>Her pulse trembled. “What the hell are you?”</p>
+                
+                <p>His smile faded. “What you wished for.”</p>
+                
+                <p>The bag slipped from her hands. A can rolled into the street, clinking against the curb. She didn’t chase it. She stepped forward, then closer, until the air between them grew warmer, stranger.</p>
+                
+                <p>And then, on instinct, she leaned in and smelled his shoulder.</p>
+                
+                <p>Leaves. Rain. Garden soil. The hush of evening. The scent of the garden where she had whispered her soul into fragile wings.</p>
+                
+                <p>Her voice cracked. “You smell like... wings.”</p>
+                
+                <p>He looked into her eyes, quiet and certain. “I’m the butterfly.”</p>
+                
+                <p>Her body stilled.</p>
+                
+                <p>"No. That’s not possible. That’s not real."</p>
+                
+                <p>"Maybe not," he said gently. "But you are."</p>
+                
+                <p>It didn’t make sense. It shouldn’t have been possible. But the truth had never lived in logic, not for her. It had always lived in moments—in the brush of wings, in the lullabies no one else heard.</p>
+                
+                <p>“Why now?” she whispered.</p>
+                
+                <p>“I don’t know,” he replied. “Maybe… you needed me more than ever. Or maybe your love was the kind that held on.”</p>
+                
+                <p>She shook her head, trying to laugh, but it came out as a sob. “I didn’t love a butterfly.”</p>
+                
+                <p>He only smiled. “You did. And I loved you back.”</p>
+                
+                <p>In the silence that followed, the wind stirred at last. A gentle breeze wrapped around them, like the world itself was exhaling.</p>
+                
+                <p>From that day on, he stayed close. Not just near her—with her. Like he belonged in the empty spaces she had carried her whole life.</p>
+                
+                <p>He didn’t have a name. So she gave him one.</p>
+                
+                <p>"Kocha," she said one night, her head on his chest. “It means butterfly. In Japanese.”</p>
+                
+                <p>He whispered the word back to her like it was a promise. “Then I am Kocha.”</p>
+                
+                <p>He had no memories of a life before her. Only impressions. The smell of summer grass. The sound of her crying beneath the willow tree. The way her hands had trembled the night she almost ran away.</p>
+                
+                <p>“I remember your sadness,” he said once, as they lay on the rooftop, tracing constellations with their fingers. “It made me want to be real.”</p>
+                
+                <p>She never asked how. Never questioned the transformation. The magic. The impossibility. Because truthfully, she didn’t care. The world had never made space for her questions. But Kocha—he made space for her.</p>
+                
+                <p>They wandered the city like poems that had slipped off a page. He marveled at pigeons and potholes and reflections in puddles. He asked questions like a child but loved her like an old soul.</p>
+                
+                <p>He didn’t eat much. Barely slept. Spoke gently. Moved softly. But when he looked at her—it felt like she was the only sound in a world that had gone quiet.</p>
+                
+                <p>Kocha didn’t know how long he would stay. He never said. Neither did she.</p>
+                
+                <p>But every second felt borrowed. Sacred. Measured in moments that couldn’t be held, only remembered.</p>
+                
+                <p>And so she remembered everything.</p>
+                
+                <p>The way he counted her freckles. How he kissed her fingertips one by one. The way he whispered stories into her collarbone like it was his favorite book.</p>
+                
+                <p>“This body,” he told her once, “is a gift from your love. But it’s borrowed. And one day…”</p>
+                
+                <p>She silenced him with a kiss.</p>
+                
+                <p>Because if love was what gave him form, then maybe love could keep him.</p>
+                
+                <p>Even if the stars disagreed.</p>
+                
+                <p>Even if the wind one day called him back.</p>
+                
+                <p>But not yet.</p>
+                
+                <p>Not now.</p>
+                
+                <p>Now, he was hers. Real, breathing, impossibly beautiful.</p>
+                
+                <p>And for the first time in her life, Dephne didn’t feel forgotten.</p>
+                
+                <p>She felt found.</p>
+                
+                <h2>Part III: Wings That Remember</h2>
+                <p>Time did not pass between them—it paused. It held its breath and pressed itself flat like a page waiting to be written on. Between Dephne and Kocha, the world softened, edges blurred, and seconds stretched into infinities.</p>
+                
+                <p>They existed not in the ticking of clocks, but in the folds of something quieter—something ancient. In shared silences, in glances that lingered too long to be innocent. In the way their fingers brushed but didn’t fully entwine, as though the universe itself was holding its breath too.</p>
+                
+                <p>They were not lovers, not in the world’s usual sense. No stolen kisses behind doors, no declarations beneath thunderstorms. Yet sometimes Dephne thought there was more hunger in the way Kocha looked at her than there ever could be in lips pressed together.</p>
+                
+                <p>He looked at her like she was a secret the stars had been dying to tell someone. Like she was a legend spoken in the language of light.</p>
+                
+                <p>And in return, she watched him with the kind of awe that made her chest feel too small. She memorized the way his shoulders curved when he leaned over a book, the way his voice dipped when he read her poetry aloud, the way his smile always started in his eyes.</p>
+                
+                <p>They found home in odd places—underneath the broken roof of the orphanage greenhouse, where rain dripped steadily from cracks and flowers bloomed despite everything. In the quiet corners of the library, where dust danced like golden spirits. In the garden, where weeds grew wild and Kocha always plucked the dandelions, handing them to her without explanation.</p>
+                
+                <p>And when he laughed—truly laughed—Dephne felt it in her bones. Like sunlight. Like warmth returning to a wintered soul.</p>
+                
+                <p>She began to write again. But not stories this time. No, these were smaller. Softer. Poems. Whispered truths folded into words. Tiny spells she scribbled in margins, on napkins, on her wrist when she ran out of paper. Secrets too fragile to say aloud.</p>
+                
+                <p>He found them. Always. Sometimes tucked into the folds of his coat. Sometimes hidden between pages of his favorite books. Once, scrawled across the fog of a bathroom mirror.</p>
+                
+                <p>He read them aloud in that low, hesitant voice of his, as though speaking magic out loud might make it vanish:</p>
+                
+                <p>"You smell like moonlight when you smile.<br>You feel like the part of me I lost before I was born.<br>I think the stars carved you out of a promise I made before I knew how to speak."</p>
+                
+                <p>And Kocha, with all his awkward shyness, would blush every time. His cheeks blooming that soft, trembling pink of sunrise. But he never dismissed them. Never laughed. He held each poem like a sacred thing.</p>
+                
+                <p>Still, there were cracks he wouldn’t let her see. Things he avoided—mirrors, most of all. He flinched from them, turned away like they might steal something from him.</p>
+                
+                <p>“Why?” she asked one morning, her fingers drawing soft lines across his bare shoulder. The dawn was still bruising the sky with color.</p>
+                
+                <p>He didn’t meet her gaze. “They make me feel like I don’t belong here.”</p>
+                
+                <p>Her heart squeezed. “You do,” she said fiercely. “You belong with me.”</p>
+                
+                <p>She said it like a prayer. Like a spell she had to believe in, even if the thread of her voice trembled.</p>
+                
+                <p>But something was changing. Slowly. Painfully. Like the first chill before a storm. At first, it was the distant look in his eyes—moments where he’d go quiet mid-laugh, as though he heard a sound only he recognized. Then the hours he’d vanish without explanation, returning pale, breathless, hands like winter. Once, he came back with shadows curling under his skin, faint as ink soaking through fragile paper.</p>
+                
+                <p>“What’s happening to you?” she asked, gripping his hands. They were shaking.</p>
+                
+                <p>“I don’t know,” he whispered. But they both knew. The truth hung between them like the scent of rain before it falls.</p>
+                
+                <p>That night, they climbed to the rooftop.</p>
+                
+                <p>It was their place. Their untamed pocket of the world. The sky stretched wide and raw above them, stung with stars like old scars.</p>
+                
+                <p>“You’re fading,” she said quietly.</p>
+                
+                <p>Kocha didn’t answer at first. Just stared at the constellations, his eyes tracing paths only he could read.</p>
+                
+                <p>“Tell me I’m wrong,” she pleaded.</p>
+                
+                <p>When he turned to her, his expression wasn’t sad. It was older than sadness. A grief carved deep, worn smooth by time. The kind that didn’t just belong to this life.</p>
+                
+                <p>“I don’t think I was meant to stay this long,” he said.</p>
+                
+                <p>“No,” she snapped. “Don’t say that. Don’t be that.”</p>
+                
+                <p>“I was made of magic, Dephne. You wished me into being. And magic…” He trailed off, staring at his trembling hands. “Magic runs out.”</p>
+                
+                <p>She stared at him, heart thudding too hard. “You’re not magic,” she said. “You’re mine.”</p>
+                
+                <p>Kocha smiled faintly. “You’re so stubborn.”</p>
+                
+                <p>“I’m scared.”</p>
+                
+                <p>His hand found hers. “So am I.”</p>
+                
+                <p>They sat together, bathed in moonlight and silence. Not the heavy kind, but the kind that wrapped around them like warmth.</p>
+                
+                <p>Then, in the soft hush between heartbeats, Dephne asked the question she’d carried since girlhood. The one that felt too heavy for daylight.</p>
+                
+                <p>“Why me?” Her voice cracked. “Why did I bring you to life?”</p>
+                
+                <p>Kocha hesitated. Then, his voice broke like something long held finally splintered.</p>
+                
+                <p>“Because I heard you cry the day you were born.”</p>
+                
+                <p>She blinked, breath snagged in her throat. “What?”</p>
+                
+                <p>“I was there. In the alley. You were so small. So cold. I wasn’t human—not yet. Just wings. Light. Instinct. But your cry…” He looked down. “It wasn’t just pain. It was longing. It was a wish. One that had never been granted.”</p>
+                
+                <p>Her eyes burned.</p>
+                
+                <p>“You saved me,” she whispered.</p>
+                
+                <p>“I didn’t know how to be human,” he said softly. “But I knew you wouldn’t survive if I didn’t act. So I carried you to the orphanage. And then I stayed. I watched you grow. I stayed close. I didn’t know how to leave.”</p>
+                
+                <p>Tears slipped down her cheeks. “Even before I could love you…”</p>
+                
+                <p>“I think I loved you first,” he said.</p>
+                
+                <p>And after that, the world tilted.</p>
+                
+                <p>She touched him differently—held him like she was trying to memorize his every breath. And he looked at her longer, as though counting the seconds he had left. Sometimes, faint flickers of wings shimmered across his back—ghostly, golden things that vanished in a blink.</p>
+                
+                <p>He was unraveling.</p>
+                
+                <p>It showed in the way he kissed her—gentle, desperate. In the way his lips trembled against her skin like he was afraid to leave pieces of himself behind.</p>
+                
+                <p>So she gave him everything. Every word. Every glance. Every beat of her heart. She pressed her hand to his chest each morning, just to feel the promise of him still there.</p>
+                
+                <p>She told him stories each night—fairytales she spun from memory and hope. Stories of girls who caught falling stars and boys made of light who never had to fade.</p>
+                
+                <p>One night, with their pinkies locked like children daring the universe to keep its promises, she whispered, “If you go… come back. In any form. A shadow. A dream. A feather. Just don’t leave me forever.”</p>
+                
+                <p>Kocha pulled her into his arms. His heartbeat was slow and strong beneath her cheek.</p>
+                
+                <p>“I promise,” he said.</p>
+                
+                <p>But some promises are made on shaking ground. And some are only meant to hold you until the ground disappears.</p>
+                
+                <p>Then came the morning.</p>
+                
+                <p>She woke up to cold sheets. The sun was soft, too soft. His clothes were folded at the foot of the bed, neat and quiet. His scent lingered—lavender and light.</p>
+                
+                <p>But the air…</p>
+                
+                <p>It was wrong. Still. Final.</p>
+                
+                <p>And on the windowsill—</p>
+                
+                <p>A single butterfly wing. Half-torn. Ash-soft.</p>
+                
+                <p>She didn’t cry. Not at first.</p>
+                
+                <p>She sat. She stared. Then she opened her mouth and something broke—a soundless scream, a silent fracture. Like the shattering of a heart you didn’t know had held so much.</p>
+                
+                <p>She searched. Every street. Every sky. She whispered his name into the garden, into the wind, into her own skin.</p>
+                
+                <p>But Kocha did not return.</p>
+                
+                <p>Not as a boy. Not as a butterfly. Not even in dreams.</p>
+                
+                <p>Even the butterflies stopped coming.</p>
+                
+                <p>And Dephne was alone again.</p>
+                
+                <p>But this time—<br>This time, she had loved first.</p>
+                
+                <p>And that was a different kind of wound.</p>
+                
+                <h2>Part IV: In the Quiet Where Wings Once Wings</h2>
+                <p>The world didn’t end when Kocha vanished. But hers did. Quietly. Without thunder or warning. Like a candle snuffed out in the hush of wind.</p>
+                
+                <p>Dephne still moved through her days—she dressed, she spoke when spoken to, she even smiled sometimes—but it was all mimicry. A pantomime of a girl who had once believed in impossible things. Who once held magic like breath in her lungs.</p>
+                
+                <p>The orphanage, once echoing with laughter and the murmur of soft secrets, had grown heavier. The air hung still. Rooms that once shimmered with silent wonder now pressed down on her like a closed book. The garden they had loved together was blooming again—with wild violets and unspoken goodbyes. And her heart, once full of stories and warmth, now felt like a locked room. Silent. Dusty. Echoing with things unsaid.</p>
+                
+                <p>Every night, she slept with the window open. Not for the breeze. But for the hope.</p>
+                
+                <p>That maybe, just maybe, he would return the way he first came.</p>
+                
+                <p>With wings and wonder. With the hush of wind and stardust on his skin.</p>
+                
+                <p>He didn’t.</p>
+                
+                <p>But some nights, just as she drifted toward sleep, she swore she felt a whisper kiss her cheek. A breath of something soft. Fleeting. Familiar. Her eyes would open to the ceiling, to the sky beyond it, to the question trembling in her chest.</p>
+                
+                <p>But there was only silence.</p>
+                
+                <p>Only sky.</p>
+                
+                <p>People around her began to speak in lowered tones. Whispers trailing behind her like smoke.</p>
+                
+                <p>“She’s fading.”</p>
+                
+                <p>“She talks to the wind.”</p>
+                
+                <p>“She’s grieving someone who was never real.”</p>
+                
+                <p>She didn’t correct them.</p>
+                
+                <p>Because how do you explain a love that transcends skin and fact? How do you describe a boy made of wings and longing? A soul that never belonged to the earth, but found home in your chest anyway?</p>
+                
+                <p>Kocha had been a miracle. But not the loud kind. Not the kind that turns water to wine or parts the sea.</p>
+                
+                <p>He had been the quiet kind. The aching kind. The kind that arrives like a whisper, shifts the tide in your bones, and leaves like a prayer unanswered.</p>
+                
+                <p>But grief—</p>
+                
+                <p>Grief doesn’t always scream. It doesn’t always break plates or shatter mirrors. Sometimes, it just lingers beside you like a shadow. Not cruel. Not kind. Just there.</p>
+                
+                <p>Constant.</p>
+                
+                <p>She learned to live beside it.</p>
+                
+                <p>She took a job at the town’s small library. A quiet corner of the world where broken people go to hide inside stories that don’t ask them to heal. The smell of old pages, the hush of reverent silence, the weight of books in her hands—it grounded her.</p>
+                
+                <p>She shelved stories. Touched lives written in ink. She found comfort in characters who knew loss. Who loved fiercely, even when it ruined them. Who carved meaning out of their scars.</p>
+                
+                <p>She kept a journal. For Kocha.</p>
+                
+                <p>On the first page, she wrote: “For the boy who made me believe I belonged.”</p>
+                
+                <p>Every entry after that was a soft lament.<br>Sketches of wings. Half-finished poems. Conversations with a ghost. Love letters to the wind. Pages that smelled like lavender and sorrow.</p>
+                
+                <p>Some entries were just single lines:</p>
+                
+                <p>“I can’t unlove you.”</p>
+                
+                <p>“You still live in my favorite songs.”</p>
+                
+                <p>“I keep seeing butterflies and pretending it’s you.”</p>
+                
+                <p>Others were longer. Spilled like rain. Honest in ways she couldn’t be out loud.</p>
+                
+                <p>And some nights, when the ache grew too large for the walls of her chest, she’d climb to the rooftop alone. The same rooftop where Kocha once promised he'd return. She’d sit with her knees to her chest, eyes raised to the sky that had once listened to them.</p>
+                
+                <p>And she’d speak.</p>
+                
+                <p>Not begging. Not hoping. Just… remembering.</p>
+                
+                <p>“I loved you more than I understood you.”</p>
+                
+                <p>“I would’ve broken the world to keep you.”</p>
+                
+                <p>“You weren’t magic to me. You were just mine.”</p>
+                
+                <p>And always—always—the wind seemed to listen. Quietly. Kindly. Like it remembered too.</p>
+                
+                <p>The years passed. Not with ceremony. Not with loud goodbyes or sudden revelations. But softly. Like pages turning in a book too precious to finish.</p>
+                
+                <p>She stopped waiting. But she never stopped carrying him.</p>
+                
+                <p>Because some loves don’t vanish with time. They aren’t erased by distance or silence. They are carved into you. Deep. Beyond memory. Beyond name. They become part of how you breathe.</p>
+                
+                <p>She tried to date. Once. Twice. But no one else knew how to say her name like it was holy. No one else looked at her like she was both the question and the answer. And no one else had wings.</p>
+                
+                <p>So she let them go. Kindly. Quietly.</p>
+                
+                <p>She chose solitude. But not the kind born of loneliness. The kind born of devotion.</p>
+                
+                <p>Then, on the eve of her twenty-eighth birthday, the sky—gentle and grey—gave her back a sliver of wonder.</p>
+                
+                <p>She was walking home from the library. The rain was soft, more memory than storm. The world smelled like damp earth and something forgotten.</p>
+                
+                <p>And then—</p>
+                
+                <p>It landed.</p>
+                
+                <p>A butterfly.</p>
+                
+                <p>Not like the others.</p>
+                
+                <p>Its wings shimmered with gold and indigo, twilight folded into silk. Ancient and new. Familiar in a way that made her knees buckle.</p>
+                
+                <p>It perched on her wrist. Still. Weightless. Electric.</p>
+                
+                <p>Her breath caught in her throat.</p>
+                
+                <p>“…Kocha?” she whispered, barely daring to say the name aloud.</p>
+                
+                <p>The butterfly hovered—just for a heartbeat, like a held breath—</p>
+                
+                <p>And vanished into the wind.</p>
+                
+                <p>Gone.</p>
+                
+                <p>But not forgotten.</p>
+                
+                <p>She didn’t sleep that night.</p>
+                
+                <p>Didn’t need to.</p>
+                
+                <p>Because something inside her—something long dormant—had woken. Her chest buzzed with warmth. Her ribs felt less like a cage and more like a lantern. Her bones hummed with memory.</p>
+                
+                <p>She sat by the window, eyes wide open, watching the garden bloom under the silver hush of dawn.</p>
+                
+                <p>And when her eyes finally closed—</p>
+                
+                <p>She dreamed.</p>
+                
+                <p>But it was no ordinary dream.</p>
+                
+                <p>This time, she remembered not just her own ache—<br>But his.</p>
+                
+                <p>She saw through his eyes:</p>
+                
+                <p>The night he found her, a tiny thing, wailing in the dark. Shivering in a world that had already let her down.</p>
+                
+                <p>The wonder of her smile the first time she saw him flutter beside the garden gate.</p>
+                
+                <p>The aching years spent watching her grow, too afraid to be anything more than a shadow.</p>
+                
+                <p>The joy—so sharp it hurt—when she said his name. When she called him real.</p>
+                
+                <p>The agony, slow and cruel, of feeling himself fading.</p>
+                
+                <p>And then—</p>
+                
+                <p>The promise.</p>
+                
+                <p>His last thought, wrapped in wind and sorrow:</p>
+                
+                <p>“I’ll find you. Even if I have to lose myself.”</p>
+                
+                <p>When she woke, the dream clung to her skin like a second soul.</p>
+                
+                <p>She walked to the mirror, trembling. The morning light filtered in like a quiet revelation.</p>
+                
+                <p>And there—</p>
+                
+                <p>Just barely—</p>
+                
+                <p>She saw it.</p>
+                
+                <p>A faint glow at her back.</p>
+                
+                <p>Not wings. Not yet.</p>
+                
+                <p>But the shape of becoming.</p>
+                
+                <p>Magic.</p>
+                
+                <p>Not his.</p>
+                
+                <p>Hers.</p>
+                
+                <p>That night, under the same moon where she once made her first wish, Dephne stood in the garden barefoot, arms open to the stars.</p>
+                
+                <p>The grass kissed her ankles. The air tasted like beginnings.</p>
+                
+                <p>Her heart was no longer breaking.</p>
+                
+                <p>It was blooming.</p>
+                
+                <p>“If you’re out there, Kocha,” she whispered, voice steady, eyes bright, “I’m ready.”</p>
+                
+                <p>The wind answered.</p>
+                
+                <p>Gentle.</p>
+                
+                <p>Certain.</p>
+                
+                <p>A light sparked at her fingertips. Not fire. Not flame. But remembrance. A warmth unfurling in her veins. The slow, soft unraveling of grief.</p>
+                
+                <p>And then—</p>
+                
+                <p>She let go.</p>
+                
+                <p>Of pain.<br>Of name.<br>Of form.</p>
+                
+                <p>She became what he once had been.</p>
+                
+                <p>Not lost.<br>Not gone.<br>Just—transformed.</p>
+                
+                <p>And in her place—</p>
+                
+                <p>A butterfly rose.</p>
+                
+                <p>Bright and silent.<br>Wings shimmering with moonlight and memory.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Golper<span>Lorai</span></a>
+                    <p>Your premier platform for writing competitions and discovering captivating stories from Bangladesh's most talented writers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/story"><i class="fas fa-chevron-right"></i> Stories</a></li>
+                        <li><a href="/leaderboard"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="/about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Get In Touch</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</a></li>
+                        <li><a href="mailto:info@golperlorai.com"><i class="fas fa-envelope"></i> info@golperlorai.com</a></li>
+                        <li><a href="tel:+8801234567890"><i class="fas fa-phone"></i> +880 1234 567890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Golper Lorai. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for hamburger menu - copied from index.html logic
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav menu when a link is clicked (for mobile)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Function to copy story link to clipboard
+        function copyStoryLink(slug) {
+            const fullUrl = window.location.origin + slug;
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = fullUrl;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            // In a real application, you might show a small "Link Copied!" message
+            console.log('Link copied: ' + fullUrl);
+            alert('Story link copied to clipboard!'); // Using alert for demonstration, replace with custom modal in production
+        }
+    </script>
+</body>
+</html>

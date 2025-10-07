@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golper Lorai - For Teachers (Judge Invitation)</title>
+    <!-- Google Fonts: Merriweather for headings, Poppins for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables - DO NOT CHANGE */
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --section-padding: 100px 0;
+        }
+        
+        /* Base Styles - DO NOT CHANGE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Buttons - DO NOT CHANGE */
+        .btn {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.35);
+        }
+        
+        .btn-accent {
+            background-color: var(--yellow);
+            color: var(--black);
+            font-weight: 700;
+        }
+        
+        .btn-accent:hover {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-sm { /* Smaller button for story cards */
+            padding: 10px 25px;
+            font-size: 13px;
+            border-radius: 30px;
+        }
+        
+        /* Header & Navigation - DO NOT CHANGE */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Adds space between image and text */
+        }
+        
+        .logo img {
+            height: 40px; 
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--black);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--yellow);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--yellow);
+            transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active::after { /* Active link indicator */
+            width: 100%;
+        }
+
+        .nav-links a.active { /* Active link color */
+            color: var(--yellow);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: var(--black);
+            z-index: 1001;
+        }
+        
+        /* Section Styling - DO NOT CHANGE */
+        section {
+            padding: var(--section-padding);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-weight: 300;
+        }
+        
+        /* Footer - DO NOT CHANGE */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-logo {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 25px;
+            display: block;
+            letter-spacing: -0.5px;
+        }
+        
+        .footer-logo span {
+            color: var(--yellow);
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h4 {
+            font-size: 1.35rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 300;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--yellow);
+            padding-left: 5px;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+        
+        /* For Teachers Page Specific Styles */
+        .teachers-hero {
+            background: linear-gradient(120deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.92) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="white"/><path d="M0,0 L200,200 M200,0 L0,200" stroke="%23FFD700" stroke-width="1.2" opacity="0.08"/></svg>');
+            background-size: 180px;
+            padding: 140px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .teachers-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, rgba(255,215,0,0) 70%);
+            z-index: 0;
+        }
+        
+        .teachers-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .teachers-hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        
+        .teachers-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            color: var(--dark-gray);
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-section {
+            padding: 60px 0;
+            background-color: var(--gray);
+            text-align: center;
+        }
+
+        .info-section:nth-of-type(odd) {
+            background-color: var(--white);
+        }
+
+        .info-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--black);
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .info-list li {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .info-list li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--yellow);
+            font-size: 1.2em;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .contact-info a {
+            color: var(--black);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info a:hover {
+            color: var(--yellow);
+        }
+
+        .contact-info a i {
+            color: var(--yellow);
+        }
+
+        /* FAQ Accordion Styles */
+        .faq-section {
+            padding: 60px 0;
+            background-color: var(--gray);
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--light-gray);
+            background-color: var(--white);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            cursor: pointer;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--black);
+            background-color: var(--white);
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--gray);
+        }
+
+        .accordion-header i {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            font-weight: 300;
+        }
+
+        .accordion-content p {
+            padding-bottom: 20px;
+            margin-bottom: 0; /* Override default paragraph margin */
+        }
+
+        .accordion-header.active + .accordion-content {
+            max-height: 500px; /* Adjust as needed for content height */
+            padding-top: 10px;
+            padding-bottom: 20px;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background-color: var(--yellow);
+            padding: 80px 0;
+            text-align: center;
+            color: var(--black);
+        }
+
+        .cta-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            font-weight: 400;
+        }
+
+        .cta-contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .cta-contact-info a {
+            color: var(--black);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-contact-info a:hover {
+            color: var(--dark-gray);
+        }
+
+        .cta-contact-info a i {
+            color: var(--black);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .teachers-hero h1 {
+                font-size: 3.2rem;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 300px;
+                height: 100vh;
+                padding: 100px 40px 40px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0 0 25px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .teachers-hero {
+                padding: 120px 0 90px;
+            }
+            
+            .teachers-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            section { /* Reduced padding for smaller screens */
+                 padding: 80px 0;
+            }
+
+            .info-section h3 {
+                font-size: 1.8rem;
+            }
+
+            .info-section p, .info-list li {
+                font-size: 1rem;
+            }
+
+            .accordion-header {
+                font-size: 1.05rem;
+                padding: 18px 25px;
+            }
+
+            .accordion-content p {
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .teachers-hero {
+                padding: 100px 0 70px;
+            }
+            
+            .teachers-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .teachers-hero p {
+                font-size: 1.15rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-links h4 {
+                margin-bottom: 20px;
+            }
+
+            .info-section, .faq-section, .cta-section {
+                padding: 50px 0;
+            }
+
+            .cta-section h3 {
+                font-size: 2rem;
+            }
+
+            .cta-section p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .teachers-hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.05rem;
+            }
+
+            .logo-text {
+                display: none; /* Hide logo text on very small screens */
+            }
+            .contact-info a, .cta-contact-info a {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <!-- Using a placeholder image as local paths are not supported in this environment -->
+                    <img src="https://placehold.co/40x40/FFD700/121212?text=GL" alt="Golper Lorai Logo">
+                    <span class="logo-text">Golper<span>Lorai</span></span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/story">Story</a></li>
+                    <li><a href="/leaderboard">Leaderboard</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/for-teachers" class="active">For Teachers</a></li> <!-- New active link -->
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="teachers-hero">
+        <div class="container">
+            <div class="teachers-hero-content">
+                <h1>For Teachers – Join Golper Lorai as a Judge</h1>
+                <p>Help us inspire young writers across Bangladesh.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Golper Lorai -->
+    <section class="info-section">
+        <div class="container">
+            <h3>About Golper Lorai</h3>
+            <p>Golper Lorai is a national-level story-writing platform and community that encourages students and aspiring writers to express their creativity. We run monthly competitions and believe in building a strong community of readers, writers, and mentors.</p>
+        </div>
+    </section>
+
+    <!-- Why We Invite Teachers -->
+    <section class="info-section">
+        <div class="container">
+            <h3>Why We Invite Teachers</h3>
+            <p>We believe teachers play a key role in shaping young minds.</p>
+            <p>At Golper Lorai, we don’t just need judges — we need mentors who value language, expression, and the spirit of creativity.</p>
+            <p>Join us to support and evaluate the next generation of writers.</p>
+        </div>
+    </section>
+
+    <!-- What Judges Do -->
+    <section class="info-section">
+        <div class="container">
+            <h3>What Judges Do</h3>
+            <ul class="info-list">
+                <li><i class="fas fa-check-circle"></i> Read and score assigned stories (approx. 10–20 per competition)</li>
+                <li><i class="fas fa-check-circle"></i> Use our judging criteria (we will provide you a form or PDF)</li>
+                <li><i class="fas fa-check-circle"></i> Give fair and honest scores</li>
+                <li><i class="fas fa-check-circle"></i> Provide optional written feedback (if they want)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Benefits of Joining -->
+    <section class="info-section">
+        <div class="container">
+            <h3>Benefits of Joining</h3>
+            <ul class="info-list">
+                <li><i class="fas fa-award"></i> Recognition as an official judge (on website + certificate)</li>
+                <li><i class="fab fa-facebook-f"></i> Mention on our Facebook/Instagram</li>
+                <li><i class="fas fa-users"></i> Help students from across Bangladesh</li>
+                <li><i class="fas fa-book-reader"></i> Build a stronger writing community</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- How to Join as a Judge -->
+    <section class="info-section">
+        <div class="container">
+            <h3>How to Join as a Judge</h3>
+            <p>Teachers can join by contacting us at:</p>
+            <div class="contact-info">
+                <a href="mailto:golperlorai.com@gmail.com"><i class="fas fa-envelope"></i> golperlorai.com@gmail.com</a>
+                <a href="https://wa.me/8801575139178"><i class="fab fa-whatsapp"></i> WhatsApp: +8801575139178</a>
+                <a href="https://forms.gle/your-google-form-link-here" target="_blank" class="btn btn-accent">OR fill out a short Google Form</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs for Teachers -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>FAQs for Teachers</h2>
+                <p class="section-subtitle">Common questions about joining our judge panel.</p>
+            </div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Q1: What kind of stories will I have to judge?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>You’ll judge short or long stories written in either Bangla or English by students or amateur writers. Most are creative, thoughtful, and reviewed before reaching you.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Q2: Do I need any special training or tools?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>No. We’ll provide clear judging criteria (score out of 100) and a scoring form. You only need time to read, basic judgment skills, and a love for storytelling.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Q3: How many stories do I have to judge?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Usually 10 to 20 stories per judge, depending on how many join. We try to keep it easy and fair.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Q4: Is there any payment?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Right now, this is a volunteer role. But judges will receive an official certificate, public recognition, and access to our future academic and workshop projects.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Q5: Will my name be shown publicly?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes — with your permission, your name, designation, and institution will be shown as part of our official judge panel (website, Facebook, etc.).</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Q6: How can I stay updated about new competitions?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Once you join our teacher panel, we’ll notify you through email or WhatsApp for future events and judging opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action (CTA) -->
+    <section class="cta-section">
+        <div class="container">
+            <h3>🎓 Are you a teacher who loves literature and writing?</h3>
+            <p>Join us and help shape the voice of the next generation.</p>
+            <div class="cta-contact-info">
+                <a href="mailto:golperlorai.com@gmail.com"><i class="fas fa-envelope"></i> Contact us now: golperlorai.com@gmail.com</a>
+                <a href="https://wa.me/8801575139178"><i class="fab fa-whatsapp"></i> WhatsApp: +8801575139178</a>
+                <a href="https://forms.gle/your-google-form-link-here" target="_blank" class="btn btn-black">🔗 Fill out our Judge Signup Form</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Golper<span>Lorai</span></a>
+                    <p>Your premier platform for writing competitions and discovering captivating stories from Bangladesh's most talented writers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/story"><i class="fas fa-chevron-right"></i> Stories</a></li>
+                        <li><a href="/leaderboard"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="/about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/competition-rules"><i class="fas fa-chevron-right"></i> Competition Rules</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Writing Tips</a></li>
+                        <li><a href="/judging-criteria"><i class="fas fa-chevron-right"></i> Judging Criteria</a></li>
+                        <li><a href="/faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="/privacy-policy"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="/refund-policy.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
+                        <li><a href="/qr-campaign.html"><i class="fas fa-chevron-right"></i> Qr-Campaign</a></li>
+                        <li><a href="july-competition.html"><i class="fas fa-chevron-right"></i>July-Competition</a></li>
+                        <li><a href="judge-info.html"><i class="fas fa-chevron-right"></i>Judge-Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Get In Touch</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</a></li>
+                        <li><a href="mailto:info@golperlorai.com"><i class="fas fa-envelope"></i> info@golperlorai.com</a></li>
+                        <li><a href="tel:+8801234567890"><i class="fas fa-phone"></i> +880 1234 567890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Golper Lorai. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav menu when a link is clicked (for mobile)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // JavaScript for accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordionItem = header.closest('.accordion-item');
+                const accordionContent = accordionItem.querySelector('.accordion-content');
+                
+                // Toggle active class on the header
+                header.classList.toggle('active');
+
+                // Toggle max-height for content to show/hide
+                if (accordionContent.style.maxHeight) {
+                    accordionContent.style.maxHeight = null;
+                } else {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Function to copy story link to clipboard (kept for consistency, though not directly used on this page)
+        function copyStoryLink(slug) {
+            const fullUrl = window.location.origin + slug;
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = fullUrl;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            console.log('Link copied: ' + fullUrl);
+            alert('Link copied to clipboard!'); // Using alert for demonstration, replace with custom modal in production
+        }
+    </script>
+</body>
+</html>

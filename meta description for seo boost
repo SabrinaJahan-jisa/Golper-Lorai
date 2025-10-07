@@ -1,0 +1,145 @@
+Absolutely, Mahi Vai! Here's a complete list of **SEO-friendly meta descriptions** for **every main page** of your Golper Lorai website. These will help Google understand and index your site properly while encouraging people to click when they see your links in search results.
+
+---
+
+## ✅ Meta Descriptions for Each Page
+
+---
+
+### 🏠 Home Page `/`
+
+```html
+<meta name="description" content="Golper Lorai is a story-writing platform and competition hub in Bangladesh. Join as a writer, reader, or judge and showcase your talent today.">
+```
+
+---
+
+### 🏆 July Competition Page `/july-competition-2025`
+
+```html
+<meta name="description" content="Join the Golper Lorai July 2025 Story Competition. Submit your original story, win cash prizes and certificates, and get featured on our site.">
+```
+
+---
+
+### 📖 Stories Page `/story`
+
+```html
+<meta name="description" content="Read original Bangla and English stories written by talented authors across Bangladesh. Discover new voices every month on Golper Lorai.">
+```
+
+---
+
+### 📝 Blog Page `/blog`
+
+```html
+<meta name="description" content="Explore writing tips, competition updates, and inspiration on the Golper Lorai blog. Stay informed and grow as a writer.">
+```
+
+---
+
+### ℹ️ About Us Page `/about`
+
+```html
+<meta name="description" content="Golper Lorai is a writing community and competition platform that empowers students and storytellers in Bangladesh to express their creativity.">
+```
+
+---
+
+### 📊 Leaderboard Page `/leaderboard`
+
+```html
+<meta name="description" content="See the top writers and highest-scoring stories from recent Golper Lorai competitions. Updated monthly with new winners.">
+```
+
+---
+
+### 📞 Contact Page `/contact`
+
+```html
+<meta name="description" content="Have a question or want to join us? Contact the Golper Lorai team directly via email or WhatsApp. We’d love to hear from you.">
+```
+
+---
+
+### 🧑‍🏫 Teachers/Judges Page `/for-teachers` or `/teacher-judge-info`
+
+```html
+<meta name="description" content="Teachers can join Golper Lorai as competition judges to guide young writers, evaluate stories, and be featured on our platform. Apply now.">
+```
+
+---
+
+### 📄 Competition Rules `/competition-rules`
+
+```html
+<meta name="description" content="Read the official rules for Golper Lorai story competitions. Learn about word limits, age requirements, original content policies, and more.">
+```
+
+---
+
+### 🎯 Judging Criteria `/judging-criteria`
+
+```html
+<meta name="description" content="Understand how stories are judged at Golper Lorai. Review our 100-point judging system used by teachers and readers.">
+```
+
+---
+
+### ❓ FAQ Page `/faq`
+
+```html
+<meta name="description" content="Got questions about Golper Lorai competitions or story submissions? Find clear answers in our Frequently Asked Questions (FAQ) section.">
+```
+
+---
+
+### 🔒 Privacy Policy `/privacy-policy`
+
+```html
+<meta name="description" content="Learn how Golper Lorai collects, stores, and protects your data. We value your privacy and don’t share personal information.">
+```
+
+---
+
+### 💰 Refund Policy `/refund-policy`
+
+```html
+<meta name="description" content="Read our refund policy for paid competitions. You may request a refund within 72 hours of payment. Terms apply.">
+```
+
+---
+
+### 🚫 404 Page `/404`
+
+```html
+<meta name="description" content="Oops! The page you're looking for on Golper Lorai doesn't exist. Let’s get you back to reading or writing something amazing.">
+```
+
+---
+
+### 🧩 QR Landing Page (Game Style) `/start`
+
+```html
+<meta name="description" content="Welcome to Golper Lorai! Discover who we are in a fun, game-style experience made for writers, readers, and teachers.">
+```
+
+---
+
+### 📖 Story Detail Page Example `/story/kocha-her-souls-last-wish`
+
+```html
+<meta name="description" content="Read 'Kocha: Her Soul’s Last Wish' by Sidratul Muntaha on Golper Lorai. A powerful story told with emotion and clarity.">
+```
+
+---
+
+### 📘 Blog Detail Page Example `/blog/how-to-write-a-winning-story`
+
+```html
+<meta name="description" content="Learn how to write a winning story for Golper Lorai competitions. Tips, examples, and common mistakes to avoid.">
+```
+
+---
+
+Would you like me to provide **Bangla versions** of these as well for future dual-language support? Let me know — I can give those next!

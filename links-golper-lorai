@@ -1,0 +1,40 @@
+ navigation bar link :
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/story">Story</a></li>
+                    <li><a href="/leaderboard">Leaderboard</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="about">About</a></li>
+                    
+social links :
+
+<a href="https://www.facebook.com/GolperLorai"><i class="fab fa-facebook-f"></i></a>
+ <a href="https://www.instagram.com/golperlorai/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/golper-lorai-b63885354/"><i class="fab fa-linkedin-in"></i></a>
+                        
+                        
+                        
+quick link :
+<ul>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/story"><i class="fas fa-chevron-right"></i> Story</a></li>
+                        <li><a href="/leaderboard"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="/about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    </ul>
+                    
+
+
+
+Summary of Improvements
+
+    Combined Logo and Text:
+        What I did: I modified the header so that your image logo (imgs/golperlorai_logo.png) and the site name "Golper Lorai" appear side-by-side as a single, clickable unit that links to your homepage.
+        Why it's an improvement: This creates a stronger brand identity in the navigation bar and is a more common and professional design pattern than having just text or just an image.
+
+    Responsive Logo:
+        What I did: I added a specific style rule that makes the text part of the logo ("Golper Lorai") disappear on very small mobile screens (less than 480px wide), leaving only the image.
+        Why it's an improvement: This prevents the navigation bar from becoming too crowded on small devices, ensuring the layout remains clean and uncluttered for all users. The most important part of the logo (the image) remains visible.
+
+    Clean HTML Structure:
+        What I did: The HTML for the logo was updated to be more semantic by grouping the image and the new text span within the same anchor (<a>) tag.
+        Why it's an improvement: This is better for both accessibility (screen readers will understand the image and text are one link) and for easier styling with CSS.

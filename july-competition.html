@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golper Lorai July Story Competition 2025 | Submit Now</title>
+    <!-- SEO Metadata -->
+    <meta name="description" content="Join the Golper Lorai July 2025 story competition. Submit your story in Bangla or English. Win cash, certificates, and nationwide recognition!">
+    <meta name="keywords" content="golper lorai, july 2025 writing competition, story contest bangladesh, bangla story competition, writing contest bd">
+
+    <!-- Google Fonts: Merriweather for headings, Poppins for body text, Noto Sans Bengali for Bangla -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables - DO NOT CHANGE */
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --section-padding: 100px 0;
+        }
+        
+        /* Base Styles - DO NOT CHANGE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif; /* Default for English */
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Apply Noto Sans Bengali for Bangla text */
+        .bangla-text {
+            font-family: 'Noto Sans Bengali', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Buttons - DO NOT CHANGE */
+        .btn {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.35);
+        }
+        
+        .btn-accent {
+            background-color: var(--yellow);
+            color: var(--black);
+            font-weight: 700;
+        }
+        
+        .btn-accent:hover {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-sm { /* Smaller button for story cards */
+            padding: 10px 25px;
+            font-size: 13px;
+            border-radius: 30px;
+        }
+        
+        /* Header & Navigation - DO NOT CHANGE */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Adds space between image and text */
+        }
+        
+        .logo img {
+            height: 40px; 
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--black);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--yellow);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--yellow);
+            transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active::after { /* Active link indicator */
+            width: 100%;
+        }
+
+        .nav-links a.active { /* Active link color */
+            color: var(--yellow);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: var(--black);
+            z-index: 1001;
+        }
+        
+        /* Section Styling - DO NOT CHANGE */
+        section {
+            padding: var(--section-padding);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-weight: 300;
+        }
+        
+        /* Footer - DO NOT CHANGE */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-logo {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 25px;
+            display: block;
+            letter-spacing: -0.5px;
+        }
+        
+        .footer-logo span {
+            color: var(--yellow);
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h4 {
+            font-size: 1.35rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 300;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--yellow);
+            padding-left: 5px;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+        
+        /* Competition Page Specific Styles */
+        .competition-hero {
+            background: linear-gradient(120deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.92) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="white"/><path d="M0,0 L200,200 M200,0 L0,200" stroke="%23FFD700" stroke-width="1.2" opacity="0.08"/></svg>');
+            background-size: 180px;
+            padding: 140px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .competition-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, rgba(255,215,0,0) 70%);
+            z-index: 0;
+        }
+        
+        .competition-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .competition-hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        
+        .competition-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            color: var(--dark-gray);
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .competition-poster {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+        }
+
+        .info-section {
+            padding: 60px 0;
+            background-color: var(--gray);
+            text-align: center;
+        }
+
+        .info-section:nth-of-type(odd) {
+            background-color: var(--white);
+        }
+
+        .info-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--black);
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .info-list li {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .info-list li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--yellow);
+            font-size: 1.2em;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            text-align: left;
+        }
+
+        .timeline-item {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--yellow);
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+        }
+
+        .timeline-item h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .timeline-item p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            margin-bottom: 0;
+        }
+
+        .rules-list {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .rules-list li {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .rules-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--yellow);
+            font-size: 1.2em;
+            top: 0;
+        }
+
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            text-align: center;
+        }
+
+        .prize-item {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .prize-item i {
+            font-size: 3rem;
+            color: var(--yellow);
+            margin-bottom: 15px;
+        }
+
+        .prize-item h4 {
+            font-size: 1.5rem;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+
+        .prize-item p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            margin-bottom: 0;
+        }
+
+        .judging-criteria-list {
+            list-style: none;
+            padding: 0;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .judging-criteria-list li {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .judging-criteria-list li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: var(--yellow);
+            font-size: 1.2em;
+            top: 0;
+        }
+
+        .form-section {
+            padding: 60px 0;
+            background-color: var(--gray);
+            text-align: center;
+        }
+
+        .form-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--black);
+        }
+
+        .google-form-iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 1000px; /* Adjust height as needed for the form */
+            border: 1px solid var(--light-gray);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            margin: 0 auto;
+            display: block;
+        }
+
+        .judges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            text-align: center;
+        }
+
+        .judge-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .judge-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700 0%, #FFC000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 30px;
+            color: var(--black);
+            margin-bottom: 15px;
+            flex-shrink: 0;
+            overflow: hidden; /* For potential image avatars */
+        }
+
+        .judge-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .judge-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: var(--black);
+        }
+
+        .judge-card p {
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+            margin-bottom: 5px;
+        }
+
+        .winner-showcase {
+            background-color: var(--yellow);
+            padding: 80px 0;
+            text-align: center;
+            color: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .winner-showcase::before {
+            content: '🏆';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10rem;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .winner-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .winner-content h3 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .winner-content h4 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .winner-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .winner-content a.btn {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        .winner-content a.btn:hover {
+            background-color: var(--white);
+            color: var(--black);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-section {
+            padding: 60px 0;
+            background-color: var(--gray);
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--black);
+        }
+
+        .contact-section .contact-info {
+            flex-direction: row; /* Horizontal for contact section */
+            justify-content: center;
+            gap: 30px;
+            margin-top: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .competition-hero h1 {
+                font-size: 3.2rem;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 300px;
+                height: 100vh;
+                padding: 100px 40px 40px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0 0 25px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .competition-hero {
+                padding: 120px 0 90px;
+            }
+            
+            .competition-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            section { /* Reduced padding for smaller screens */
+                 padding: 80px 0;
+            }
+
+            .info-section h3, .form-section h3, .contact-section h3 {
+                font-size: 1.8rem;
+            }
+
+            .info-section p, .info-list li, .rules-list li, .judging-criteria-list li {
+                font-size: 1rem;
+            }
+
+            .timeline-grid, .prizes-grid, .judges-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .winner-content h3 {
+                font-size: 2.2rem;
+            }
+            .winner-content h4 {
+                font-size: 1.6rem;
+            }
+            .winner-content p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .competition-hero {
+                padding: 100px 0 70px;
+            }
+            
+            .competition-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .competition-hero p {
+                font-size: 1.15rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-links h4 {
+                margin-bottom: 20px;
+            }
+
+            .info-section, .form-section, .contact-section, .winner-showcase {
+                padding: 50px 0;
+            }
+
+            .timeline-grid, .prizes-grid, .judges-grid {
+                grid-template-columns: 1fr; /* Stack vertically */
+            }
+
+            .judge-card, .prize-item, .timeline-item {
+                padding: 25px;
+            }
+
+            .google-form-iframe {
+                height: 800px; /* Adjust height for smaller screens */
+            }
+
+            .contact-section .contact-info {
+                flex-direction: column; /* Stack contact info vertically */
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .competition-hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.05rem;
+            }
+
+            .logo-text {
+                display: none; /* Hide logo text on very small screens */
+            }
+            .contact-info a, .cta-contact-info a {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <!-- Using a placeholder image as local paths are not supported in this environment -->
+                    <img src="https://placehold.co/40x40/FFD700/121212?text=GL" alt="Golper Lorai Logo">
+                    <span class="logo-text">Golper<span>Lorai</span></span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/story">Story</a></li>
+                    <li><a href="/july-competition.html">Competition</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section 1: Hero Banner -->
+    <section class="competition-hero">
+        <div class="container">
+            <div class="competition-hero-content">
+                <img src="https://placehold.co/800x400/FFD700/121212?text=Competition+Poster" alt="Golper Lorai July Competition 2025 Poster" class="competition-poster">
+                <h1>Golper Lorai July Story Competition 2025</h1>
+                <p>“Submit your original story and become the next winner!”</p>
+                <a href="https://forms.gle/mjBwCG59QBgBCVsf6" class="btn btn-accent scroll-to-form">Join Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Quick Competition Overview -->
+    <section class="info-section">
+        <div class="container">
+            <h3>Welcome to the Competition!</h3>
+            <p>Welcome to Golper Lorai’s July 2025 story competition!</p>
+            <p>This is your chance to show your writing skills in Bangla or English. Short or long, emotional or dramatic — we accept your best original stories and celebrate them nationwide.</p>
+        </div>
+    </section>
+
+    <!-- Section 3: Theme of the Month -->
+    <section class="info-section">
+        <div class="container">
+            <h3>Theme of the Month</h3>
+            <p style="font-size: 1.4rem; font-weight: 600; color: var(--black);">🎯 “Amar Golpo, Amar Bhasha – My Story, My Voice”</p>
+            <p>Your story can be about anything — real or fictional. Express your voice.</p>
+        </div>
+    </section>
+
+    <!-- Section 4: Timeline -->
+    <section class="info-section">
+        <div class="container">
+            <h3>Competition Timeline</h3>
+            <div class="timeline-grid">
+                <div class="timeline-item">
+                    <h4><i class="fas fa-calendar-alt"></i> Pre-registration Opens</h4>
+                    <p>July 20, 2025</p>
+                </div>
+                <div class="timeline-item">
+                    <h4><i class="fas fa-paper-plane"></i> Submission Deadline</h4>
+                    <p>August 31, 2025</p>
+                </div>
+                <div class="timeline-item">
+                    <h4><i class="fas fa-bullhorn"></i> Winner Announcement</h4>
+                    <p>August 31, 2025 (on website + social media)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Rules & Word Limit -->
+    <section class="info-section">
+        <div class="container">
+            <h3>Rules & Word Limit</h3>
+            <ul class="rules-list">
+                <li>Stories must be original</li>
+                <li>Languages: Bangla or English</li>
+                <li>Age: 13 to 50</li>
+                <li>Entry Fee: ৳100 (paid during form submission)</li>
+                <li>Submission Limit: Only one story per person</li>
+            </ul>
+            <h4 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">Story Types & Word Limits:</h4>
+            <ul class="rules-list">
+                <li>Short Story: 800–1500 words</li>
+                <li>Big Story: 3000–5000 words</li>
+            </ul>
+            <p style="margin-top: 20px;"><a href="#" class="btn btn-sm">Link to full rules page</a></p>
+        </div>
+    </section>
+
+    <!-- Section 6: Prizes -->
+    <section class="info-section">
+        <div class="container">
+            <h3>Prizes</h3>
+            <p style="font-size: 1.2rem; font-weight: 500; color: var(--black);">🏆 Top Winner Will Receive:</p>
+            <div class="prizes-grid">
+                <div class="prize-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h4>Cash Prize</h4>
+                </div>
+                <div class="prize-item">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Digital Certificate</h4>
+                </div>
+                <div class="prize-item">
+                    <i class="fas fa-globe"></i>
+                    <h4>Featured on Website</h4>
+                    <p>(Golper Lorai)</p>
+                </div>
+                <div class="prize-item">
+                    <i class="fab fa-facebook"></i>
+                    <h4>Featured on Facebook Page</h4>
+                </div>
+                <div class="prize-item">
+                    <i class="fab fa-instagram"></i>
+                    <h4>Featured on Instagram Story</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Judging Process -->
+    <section class="info-section">
+        <div class="container">
+            <h3>Judging Process</h3>
+            <p>Stories will be judged by:</p>
+            <ul class="judging-criteria-list">
+                <li>3 professional teacher judges</li>
+                <li>50+ community readers</li>
+            </ul>
+            <h4 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">Judging Criteria:</h4>
+            <ul class="judging-criteria-list">
+                <li>Creativity</li>
+                <li>Language clarity</li>
+                <li>Emotions</li>
+                <li>Storytelling technique</li>
+                <li>Score out of 100</li>
+            </ul>
+            <p style="margin-top: 20px;"><a href="#" class="btn btn-sm">Link to full judging criteria page</a></p>
+        </div>
+    </section>
+
+    <!-- Section 8: Submit Your Story (Embedded Form) -->
+    <section class="form-section" id="submission-form">
+        <div class="container">
+            <h3>📝 Registration & Submission Form</h3>
+            <p>Fill out the form below to submit your story for the July 2025 competition.</p>
+            <!-- Replace 'YOUR_GOOGLE_FORM_EMBED_LINK_HERE' with your actual Google Form embed link -->
+            <iframe src="https://forms.gle/mjBwCG59QBgBCVsf6" class="google-form-iframe" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+    </section>
+
+    <!-- Section 9: Meet the Judges    
+      <section class="info-section">
+        <div class="container">
+            <h3>Meet the Judges</h3>
+            <p class="section-subtitle">Our esteemed panel of teachers and literary experts.</p>
+            <div class="judges-grid">
+                
+                <div class="judge-card">
+                    <div class="judge-avatar">
+                        <img src="https://placehold.co/80x80/FFD700/121212?text=DR" alt="Judge Avatar">
+                    </div>
+                    <h4>Dr. Rahman Ahmed</h4>
+                    <p>Professor of Literature</p>
+                    <p>Dhaka University</p>
+                </div>
+                
+                <div class="judge-card">
+                    <div class="judge-avatar">
+                        <img src="https://placehold.co/80x80/FFD700/121212?text=MS" alt="Judge Avatar">
+                    </div>
+                    <h4>Ms. Sara Khan</h4>
+                    <p>Head of English Department</p>
+                    <p>Bangladesh International School</p>
+                </div>
+                                <div class="judge-card">
+                    <div class="judge-avatar">
+                        <img src="https://placehold.co/80x80/FFD700/121212?text=MR" alt="Judge Avatar">
+                    </div>
+                    <h4>Mr. Rezaul Karim</h4>
+                    <p>Bengali Language Instructor</p>
+                    <p>Chittagong College</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+-->
+    
+    <!-- Section 10: Previous Winner Showcase (June 2025) -->
+    <section class="winner-showcase">
+        <div class="container">
+            <div class="winner-content">
+                <h3>🎉 Last Month’s Champion</h3>
+                <h4>Story Title: “<span class="bangla-text">Love and the Search for Secrets</span>”</h4>
+                <p>Writer: Aisha Rahman
+                </p>
+                <a href="story-pages/" class="btn">Read Featured Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Contact -->
+    <section class="contact-section">
+        <div class="container">
+            <h3>Have Questions? Get In Touch!</h3>
+            <p>For questions or judge registration:</p>
+            <div class="contact-info">
+                <a href="mailto:golperlorai.com@gmail.com"><i class="fas fa-envelope"></i> Email: golperlorai.com@gmail.com</a>
+                <a href="https://wa.me/8801575139178"><i class="fab fa-whatsapp"></i> WhatsApp: +8801575139178</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Golper<span>Lorai</span></a>
+                    <p>Your premier platform for writing competitions and discovering captivating stories from Bangladesh's most talented writers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/story"><i class="fas fa-chevron-right"></i> Stories</a></li>
+                        <li><a href="/leaderboard"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="/about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        <li><a href="privacy-policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="privacy-policy.html"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Get In Touch</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</a></li>
+                        <li><a href="mailto:golperlorai.com@gmail.com"><i class="fas fa-envelope"></i> info@golperlorai.com</a></li>
+                        <li><a href="tel:+8801575139178"><i class="fas fa-phone"></i> +880 1234 567890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Golper Lorai. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav menu when a link is clicked (for mobile)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for "Join Now" button
+        document.querySelector('.scroll-to-form').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Function to copy story link to clipboard (kept for consistency, though not directly used on this page)
+        function copyStoryLink(slug) {
+            const fullUrl = window.location.origin + slug;
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = fullUrl;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            console.log('Link copied: ' + fullUrl);
+            alert('Link copied to clipboard!'); // Using alert for demonstration, replace with custom modal in production
+        }
+    </script>
+</body>
+</html>

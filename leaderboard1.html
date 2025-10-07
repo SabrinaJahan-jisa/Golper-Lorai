@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Golper Lorai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: var(--black); background-color: var(--white); line-height: 1.7; font-weight: 400; }
+        h1, h2, h3, h4, h5 { font-family: 'Merriweather', serif; font-weight: 700; line-height: 1.3; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Header & Navigation (Consistent) --- */
+        header { background-color: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 0 20px; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+        .logo { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 40px; width: auto; }
+        .logo-text { font-family: 'Merriweather', serif; font-weight: 700; font-size: 28px; color: var(--black); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--yellow); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 40px; }
+        .nav-links a { text-decoration: none; color: var(--black); font-weight: 500; font-size: 16px; transition: color 0.3s; position: relative; padding: 5px 0; }
+        .nav-links a:hover { color: var(--yellow); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--yellow); transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); }
+        .nav-links a:hover::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 26px; color: var(--black); z-index: 1001; }
+
+        /* --- Footer (Consistent) --- */
+        footer { background-color: var(--black); color: var(--white); padding: 100px 0 40px; margin-top: 100px;}
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 32px; margin-bottom: 25px; display: block; letter-spacing: -0.5px; }
+        .footer-logo span { color: var(--yellow); }
+        .footer-about p { color: rgba(255, 255, 255, 0.7); margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; font-weight: 300; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.08); color: var(--white); transition: all 0.3s ease; font-size: 18px; }
+        .social-links a:hover { background-color: var(--yellow); color: var(--black); transform: translateY(-3px); }
+        .footer-links h4 { font-size: 1.35rem; margin-bottom: 25px; position: relative; padding-bottom: 12px; font-family: 'Poppins', sans-serif; color: var(--white); }
+        .footer-links h4::after { content: ''; position: absolute; width: 50px; height: 3px; background-color: var(--yellow); bottom: 0; left: 0; border-radius: 2px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: rgba(255, 255, 255, 0.7); transition: color 0.3s; font-weight: 300; display: block; padding: 5px 0; }
+        .footer-links a:hover { color: var(--yellow); padding-left: 5px; }
+        .footer-links a i { margin-right: 10px; width: 20px; text-align: center; }
+        .copyright { text-align: center; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 0.95rem; font-weight: 300; }
+        
+        /* --- Styles for Leaderboard Page --- */
+        .page-header { padding: 100px 0 60px; text-align: center; background-color: var(--white); }
+        .page-header h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .page-header p { font-size: 1.2rem; color: var(--dark-gray); max-width: 650px; margin: 0 auto; font-weight: 300; }
+
+        .leaderboard-section { padding-bottom: 100px; }
+        
+        .top-three-container {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr 1fr;
+            gap: 30px;
+            align-items: flex-end;
+            margin-bottom: 80px;
+        }
+
+        .rank-card {
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .rank-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        .rank-card .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+        .rank-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        .rank-card .score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Merriweather', serif;
+            color: var(--black);
+        }
+        .rank-card .rank-badge {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Highlighting Top 3 */
+        .rank-2 {
+            padding-bottom: 40px;
+            border-bottom: 5px solid #C0C0C0; /* Silver */
+        }
+         .rank-2 .avatar { background: linear-gradient(135deg, #e8e8e8, #b0b0b0); }
+         .rank-2 .rank-badge { color: #A9A9A9; }
+
+        .rank-1 {
+            padding-top: 50px;
+            padding-bottom: 50px;
+            transform: scale(1.05);
+            border-bottom: 5px solid var(--yellow); /* Gold */
+        }
+        .rank-1 .avatar {
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, #FFF7B2, #FFD700);
+        }
+        .rank-1 .rank-badge { color: #D4AF37; }
+
+        .rank-3 {
+            padding-bottom: 40px;
+            border-bottom: 5px solid #CD7F32; /* Bronze */
+        }
+        .rank-3 .avatar { background: linear-gradient(135deg, #e6c5a8, #c48b52); }
+        .rank-3 .rank-badge { color: #CD7F32; }
+
+
+        .full-leaderboard-list {
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        .list-header, .list-row {
+            display: grid;
+            /* Updated for new columns */
+            grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr;
+            align-items: center;
+            padding: 15px 30px;
+            gap: 20px;
+        }
+        .list-header {
+            background-color: var(--gray);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--dark-gray);
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .list-row {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .list-row:last-child {
+            border-bottom: none;
+        }
+        .list-row:hover {
+            background-color: #fffde7;
+        }
+        .list-row .rank {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+        }
+        .list-row .score { /* This will style the Final Score column */
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 900px) {
+            .nav-links { position: fixed; top: 0; right: -100%; flex-direction: column; background-color: var(--white); width: 300px; height: 100vh; padding: 100px 40px 40px; transition: right 0.4s ease; box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08); z-index: 1000; }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 0 0 25px 0; }
+            .hamburger { display: block; }
+            .top-three-container { grid-template-columns: 1fr; }
+            .rank-1 { order: -1; } /* Puts #1 on top */
+        }
+        @media (max-width: 768px) {
+             .list-header { display: none; }
+             .list-row {
+                grid-template-columns: 50px 1fr; /* Two columns: Rank and Main Info */
+                padding: 20px;
+                border-bottom: 1px solid var(--light-gray);
+                grid-row-gap: 5px;
+             }
+             .list-row .rank {
+                 grid-row: 1 / span 2;
+                 grid-column: 1 / 2;
+                 display: flex;
+                 align-items: center;
+                 justify-content: center;
+                 font-size: 1.5rem;
+                 background-color: var(--gray);
+                 height: 50px;
+                 border-radius: 8px;
+             }
+             /* Place ID in the first row of the second column */
+             .list-row .col-id {
+                 grid-column: 2 / 3;
+                 grid-row: 1 / 2;
+                 font-weight: 600;
+                 align-self: end;
+             }
+             /* Place Final Score in the second row of the second column */
+             .list-row .score.col-final-score {
+                 grid-column: 2 / 3;
+                 grid-row: 2 / 3;
+                 font-size: 1.1rem;
+                 color: var(--dark-gray);
+                 align-self: start;
+             }
+             /* Hide the other columns on mobile */
+             .list-row .col-score, .list-row .col-word, .list-row .col-penalty {
+                 display: none;
+             }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 0 20px; }
+            .page-header h1 { font-size: 2.8rem; }
+            .leaderboard-section, .page-header { padding-top: 80px; padding-bottom: 60px; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-links h4::after { left: 50%; transform: translateX(-50%); }
+            .social-links { justify-content: center; }
+        }
+         @media (max-width: 480px) {
+            .logo-text { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <img src="imgs/golperlorai_logo.png" alt="Golper Lorai Logo">
+                    <span class="logo-text">Golper<span>Lorai</span></span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/story">Story</a></li>
+                    <li><a href="/leaderboard">Leaderboard</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Leaderboard</h1>
+                <p>See who’s leading the competition this month. The top writers are celebrated for their exceptional storytelling and creativity.</p>
+            </div>
+        </section>
+
+        <section class="leaderboard-section">
+            <div class="container">
+                <div class="top-three-container" id="top-three-container">
+                    </div>
+                
+                <div class="full-leaderboard-list">
+                    <div class="list-header">
+                        <div>Rank</div>
+                        <div>ID</div>
+                        <div>Score</div>
+                        <div>Word</div>
+                        <div>Penalty</div>
+                        <div>Final Score</div>
+                    </div>
+                    <div id="leaderboard-list-container">
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Golper<span>Lorai</span></a>
+                    <p>Bangladesh's premier platform for writers to showcase their talent, compete in challenges, and gain recognition for their literary works. We celebrate the art of storytelling and the power of words.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/GolperLorai"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/golperlorai/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/golper-lorai-b63885354/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/story"><i class="fas fa-chevron-right"></i> Story</a></li>
+                        <li><a href="/leaderboard"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="/about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/competition-rules"><i class="fas fa-chevron-right"></i> Competition Rules</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Writing Tips</a></li>
+                        <li><a href="/judging-criteria"><i class="fas fa-chevron-right"></i> Judging Criteria</a></li>
+                        <li><a href="/faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="/privacy-policy"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="/refund-policy.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
+                        <li><a href="/qr-campaign.html"><i class="fas fa-chevron-right"></i> Qr-Campaign</a></li>
+                        <li><a href="july-competition.html"><i class="fas fa-chevron-right"></i>July-Competition</a></li>
+                        <li><a href="judge-info.html"><i class="fas fa-chevron-right"></i>Judge-Info</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="mailto:golperlorai.com@gmail.com"><i class="fas fa-envelope"></i> golperlorai.com@gmail.com</a></li>
+                        <li><a href="https://wa.me/8801575139178"><i class="fas fa-phone"></i> +880 015 75139178</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Chattogram, Bangladesh</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <span id="copyright-year"></span> Golper Lorai. All rights reserved. Celebrating the art of storytelling.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // --- Mobile Menu Toggle ---
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.innerHTML = navLinks.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+
+    // --- Leaderboard Page Functionality ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Updated Student Data ---
+        const leaderboardData = [
+    { rank: 1, id: 'GL3942', name: 'Aisha Rahman', score: 99, word: 6000, penalty: 0, finalScore: 99.5, initials: 'AR' },
+    { rank: 2, id: 'GL8239', name: 'Sidratul Muntaha', score: 99, word: 6200, penalty: 0, finalScore: 99, initials: 'SM' },
+    { rank: 3, id: 'GL1909', name: 'Areebah Rayann Rahman', score: 98, word: 5500, penalty: 0, finalScore: 98, initials: 'AR' },
+    { rank: 4, id: 'GL2088', name: 'Participant GL2088', score: 96, word: 7173, penalty: 0, finalScore: 96, initials: 'GL' },
+    { rank: 5, id: 'GL5945', name: 'Participant GL5945', score: 95, word: 5220, penalty: 0, finalScore: 95, initials: 'GL' },
+    { rank: 6, id: 'GL7667', name: 'Participant GL7667', score: 94.5, word: 6099, penalty: 0, finalScore: 94.5, initials: 'GL' },
+    { rank: 7, id: 'GL7269', name: 'Participant GL7269', score: 96, word: 4500, penalty: -2, finalScore: 94, initials: 'GL' },
+    { rank: 8, id: 'GL1483', name: 'Participant GL1483', score: 93.5, word: 5000, penalty: 0, finalScore: 93.5, initials: 'GL' },
+    { rank: 9, id: 'GL2506', name: 'Participant GL2506', score: 93, word: 5000, penalty: 0, finalScore: 93, initials: 'GL' },
+    { rank: 10, id: 'GL4121', name: 'Participant GL4121', score: 92, word: 7000, penalty: 0, finalScore: 92, initials: 'GL' },
+    { rank: 11, id: 'GL9127', name: 'Participant GL9127', score: 92, word: 5000, penalty: 0, finalScore: 92, initials: 'GL' },
+    { rank: 12, id: 'GL2125', name: 'Participant GL2125', score: 91, word: 6900, penalty: 0, finalScore: 91, initials: 'GL' },
+    { rank: 13, id: 'GL5640', name: 'Participant GL5640', score: 91, word: 6500, penalty: 0, finalScore: 91, initials: 'GL' },
+    { rank: 14, id: 'GL6558', name: 'Participant GL6558', score: 90, word: 6000, penalty: 0, finalScore: 90, initials: 'GL' },
+    { rank: 15, id: 'GL1735', name: 'Participant GL1735', score: 90, word: 5000, penalty: 0, finalScore: 90, initials: 'GL' },
+    { rank: 16, id: 'GL6671', name: 'Participant GL6671', score: 89, word: 7000, penalty: 0, finalScore: 89, initials: 'GL' },
+    { rank: 17, id: 'GL5362', name: 'Participant GL5362', score: 89, word: 5000, penalty: 0, finalScore: 89, initials: 'GL' },
+    { rank: 18, id: 'GL9310', name: 'Participant GL9310', score: 88, word: 4600, penalty: -2, finalScore: 86, initials: 'GL' },
+    { rank: 19, id: 'GL4346', name: 'Participant GL4346', score: 88, word: 4600, penalty: -2, finalScore: 86, initials: 'GL' },
+    { rank: 20, id: 'GL9524', name: 'Participant GL9524', score: 88, word: 4500, penalty: -2, finalScore: 86, initials: 'GL' },
+    // --- New entries start here ---
+    { rank: 21, id: 'GL5191', name: 'Participant GL5191', score: 95, word: 2500, penalty: -10, finalScore: 85, initials: 'GL' },
+    { rank: 22, id: 'GL696', name: 'Participant GL696', score: 83, word: 6000, penalty: 0, finalScore: 83, initials: 'GL' },
+    { rank: 23, id: 'GL5287', name: 'Participant GL5287', score: 91, word: 2500, penalty: -10, finalScore: 81, initials: 'GL' },
+    { rank: 24, id: 'GL9567', name: 'Participant GL9567', score: 89, word: 3000, penalty: -8, finalScore: 81, initials: 'GL' },
+    { rank: 25, id: 'GL3117', name: 'Participant GL3117', score: 92, word: 2500, penalty: -10, finalScore: 82, initials: 'GL' },
+    { rank: 26, id: 'GL1128', name: 'Participant GL1128', score: 90, word: 3000, penalty: -8, finalScore: 82, initials: 'GL' },
+    { rank: 27, id: 'GL3258', name: 'Participant GL3258', score: 88, word: 3000, penalty: -8, finalScore: 80, initials: 'GL' },
+    { rank: 28, id: 'GL9872', name: 'Participant GL9872', score: 90, word: 2600, penalty: -10, finalScore: 80, initials: 'GL' },
+    { rank: 29, id: 'GL2051', name: 'Participant GL2051', score: 95, word: 3300, penalty: -8, finalScore: 87, initials: 'GL' },
+    { rank: 30, id: 'GL7186', name: 'Participant GL7186', score: 93, word: 2000, penalty: -14, finalScore: 79, initials: 'GL' },
+    { rank: 31, id: 'GL7391', name: 'Participant GL7391', score: 90, word: 1843, penalty: -16, finalScore: 74, initials: 'GL' },
+    { rank: 32, id: 'GL5915', name: 'Participant GL5915', score: 92, word: 1100, penalty: -16, finalScore: 76, initials: 'GL' },
+    { rank: 33, id: 'GL493', name: 'Participant GL493', score: 89, word: 2000, penalty: -14, finalScore: 75, initials: 'GL' },
+    { rank: 34, id: 'GL2877', name: 'Participant GL2877', score: 84, word: 2000, penalty: -14, finalScore: 70, initials: 'GL' },
+    { rank: 35, id: 'GL1616', name: 'Participant GL1616', score: 75, word: 3000, penalty: -8, finalScore: 67, initials: 'GL' },
+    { rank: 36, id: 'GL5561', name: 'Participant GL5561', score: 75, word: 3105, penalty: -8, finalScore: 67, initials: 'GL' },
+    { rank: 37, id: 'GL3838', name: 'Participant GL3838', score: 80, word: 1000, penalty: -16, finalScore: 64, initials: 'GL' },
+    { rank: 38, id: 'GL2166', name: 'Participant GL2166', score: 76, word: 1000, penalty: -16, finalScore: 60, initials: 'GL' },
+    { rank: 39, id: 'GL114', name: 'Participant GL114', score: 75, word: 1000, penalty: -16, finalScore: 59, initials: 'GL' },
+    { rank: 40, id: 'GL8367', name: 'Participant GL8367', score: 0, word: 0, penalty: -20, finalScore: -20, initials: 'GL' }
+];
+        
+        const topThreeContainer = document.getElementById('top-three-container');
+        const listContainer = document.getElementById('leaderboard-list-container');
+
+        // --- Render Top 3 ---
+        const topThree = leaderboardData.slice(0, 3);
+        const rank2 = topThree.find(w => w.rank === 2);
+        const rank1 = topThree.find(w => w.rank === 1);
+        const rank3 = topThree.find(w => w.rank === 3);
+
+        const createTopCard = (writer) => {
+             const medals = { 1: '🥇', 2: '🥈', 3: '🥉' };
+             return `
+                <div class="rank-card rank-${writer.rank}">
+                    <div class="rank-badge">${medals[writer.rank]}</div>
+                    <div class="avatar">${writer.initials}</div>
+                    <h3>${writer.name}</h3>
+                    <p class="score">${writer.finalScore.toFixed(1)}</p>
+                </div>
+            `;
+        };
+        
+        if (rank2) topThreeContainer.innerHTML += createTopCard(rank2);
+        if (rank1) topThreeContainer.innerHTML += createTopCard(rank1);
+        if (rank3) topThreeContainer.innerHTML += createTopCard(rank3);
+
+        // --- Render the Rest of the List ---
+        const otherWriters = leaderboardData.slice(3);
+        let listHtml = '';
+        otherWriters.forEach(writer => {
+            listHtml += `
+                <div class="list-row">
+                    <div class="rank">${writer.rank}</div>
+                    <div class="col-id">${writer.id}</div>
+                    <div class="col-score">${writer.score}</div>
+                    <div class="col-word">${writer.word}</div>
+                    <div class="col-penalty">${writer.penalty}</div>
+                    <div class="score col-final-score">${writer.finalScore.toFixed(1)}</div>
+                </div>
+            `;
+        });
+        if(listContainer) {
+            listContainer.innerHTML = listHtml;
+        }
+
+        // --- Set Dynamic Copyright Year ---
+        const yearSpan = document.getElementById('copyright-year');
+        if(yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    });
+    </script>
+</body>
+</html>

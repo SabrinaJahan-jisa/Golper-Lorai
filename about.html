@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Golper Lorai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: var(--black); background-color: var(--white); line-height: 1.7; font-weight: 400; }
+        h1, h2, h3, h4, h5 { font-family: 'Merriweather', serif; font-weight: 700; line-height: 1.3; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Header & Navigation (Consistent) --- */
+        header { background-color: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 0 20px; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+        .logo { text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 40px; width: auto; }
+        .logo-text { font-family: 'Merriweather', serif; font-weight: 700; font-size: 28px; color: var(--black); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--yellow); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 40px; }
+        .nav-links a { text-decoration: none; color: var(--black); font-weight: 500; font-size: 16px; transition: color 0.3s; position: relative; padding: 5px 0; }
+        .nav-links a:hover { color: var(--yellow); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--yellow); transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); }
+        .nav-links a:hover::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 26px; color: var(--black); z-index: 1001; }
+
+        /* --- Footer (Consistent) --- */
+        footer { background-color: var(--black); color: var(--white); padding: 100px 0 40px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 32px; margin-bottom: 25px; display: block; letter-spacing: -0.5px; }
+        .footer-logo span { color: var(--yellow); }
+        .footer-about p { color: rgba(255, 255, 255, 0.7); margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; font-weight: 300; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.08); color: var(--white); transition: all 0.3s ease; font-size: 18px; }
+        .social-links a:hover { background-color: var(--yellow); color: var(--black); transform: translateY(-3px); }
+        .footer-links h4 { font-size: 1.35rem; margin-bottom: 25px; position: relative; padding-bottom: 12px; font-family: 'Poppins', sans-serif; color: var(--white); }
+        .footer-links h4::after { content: ''; position: absolute; width: 50px; height: 3px; background-color: var(--yellow); bottom: 0; left: 0; border-radius: 2px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: rgba(255, 255, 255, 0.7); transition: color 0.3s; font-weight: 300; display: block; padding: 5px 0; }
+        .footer-links a:hover { color: var(--yellow); padding-left: 5px; }
+        .footer-links a i { margin-right: 10px; width: 20px; text-align: center; }
+        .copyright { text-align: center; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 0.95rem; font-weight: 300; }
+        
+        /* --- General Section Styling --- */
+        .content-section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-title h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        .section-title h2::after {
+            content: ''; position: absolute; width: 100px; height: 4px;
+            background-color: var(--yellow); bottom: 0; left: 50%;
+            transform: translateX(-50%); border-radius: 2px;
+        }
+
+        /* --- Page Header --- */
+        .page-header { padding: 100px 0; text-align: center; background-color: var(--white); }
+        .page-header h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .page-header p { font-size: 1.2rem; color: var(--dark-gray); max-width: 650px; margin: 0 auto; font-weight: 300; }
+
+        /* --- Our Vision Section --- */
+        .vision-section { background-color: var(--gray); }
+        .vision-box {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px 40px;
+            background-color: var(--white);
+            border-radius: 16px;
+            border-left: 5px solid var(--yellow);
+            box-shadow: var(--card-shadow);
+        }
+        .vision-box h2 { font-size: 2.5rem; margin-bottom: 25px; }
+        .vision-box p { font-size: 1.15rem; line-height: 1.8; color: var(--dark-gray); }
+
+        /* --- Founder Message Section --- */
+        .founder-quote {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .founder-quote img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--yellow);
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .founder-quote blockquote {
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+            border: none;
+            padding: 0;
+            background: none;
+        }
+        .founder-quote cite {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .founder-quote span {
+            display: block;
+            font-size: 1rem;
+            color: #777;
+            font-weight: 400;
+        }
+
+        /* --- Meet the Team Section --- */
+        .team-section { background-color: var(--gray); }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .team-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        .team-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: var(--light-gray);
+        }
+        .team-card h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        .team-card .role {
+            color: var(--dark-gray);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        .team-card .bio {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #777;
+            font-weight: 300;
+        }
+
+        /* --- Contact Section --- */
+        .contact-section .contact-info { text-align: center; }
+        .contact-info a {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            transition: color 0.3s;
+        }
+        .contact-info a:hover { color: var(--black); }
+        .contact-info .social-links {
+            margin-top: 30px;
+            justify-content: center;
+        }
+        .contact-info .social-links a { background-color: var(--gray); color: var(--black); }
+        .contact-info .social-links a:hover { background-color: var(--yellow); }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 900px) {
+            .nav-links { position: fixed; top: 0; right: -100%; flex-direction: column; background-color: var(--white); width: 300px; height: 100vh; padding: 100px 40px 40px; transition: right 0.4s ease; box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08); z-index: 1000; }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 0 0 25px 0; }
+            .hamburger { display: block; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 0 20px; }
+            .content-section { padding: 80px 0; }
+            .page-header { padding: 80px 0; }
+            .page-header h1 { font-size: 2.8rem; }
+            .section-title h2 { font-size: 2.2rem; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-links h4::after { left: 50%; transform: translateX(-50%); }
+            .social-links { justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            .logo-text { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <img src="imgs/golperlorai_logo.png" alt="Golper Lorai Logo">
+                    <span class="logo-text">Golper<span>Lorai</span></span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/story">Story</a></li>
+                    <li><a href="/leaderboard">Leaderboard</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header content-section">
+            <div class="container">
+                <h1>About Us</h1>
+                <p>Learn about the heart and soul behind Golper Lorai.</p>
+            </div>
+        </section>
+
+        <section class="vision-section content-section">
+            <div class="container">
+                <div class="vision-box">
+                    <h2>Our Vision</h2>
+                    <p>Golper Lorai is more than just a competition — it’s a community of writers. We provide a space where people of all ages can showcase their storytelling talents, improve their craft, and get recognized. Whether you're a beginner or an experienced writer, your words have a place here.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="founder-section content-section">
+            <div class="container">
+                 <div class="founder-quote">
+                    <img src="https://placehold.co/150x150/FFD700/000000?text=MA" alt="Mahi Ul Alam">
+                    <blockquote>“I believe writing is one of the purest ways to express your feelings to the world. Don’t give up — try your best every time, because every voice matters.”</blockquote>
+                    <cite>Mahi Ul Alam</cite>
+                    <span>Founder of Golper Lorai</span>
+                 </div>
+            </div>
+        </section>
+        
+        <section class="team-section content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Meet the Team</h2>
+                </div>
+                <div class="team-grid" id="team-grid-container">
+                    <!-- Team members injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section content-section">
+            <div class="container">
+                 <div class="section-title">
+                    <h2>Get In Touch</h2>
+                </div>
+                <div class="contact-info">
+                    <p>Have questions or want to collaborate? Reach out to us.</p>
+                    <a href="mailto:golperlorai.com@gmail.com">golperlorai.com@gmail.com</a>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/GolperLorai"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/golperlorai/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Golper<span>Lorai</span></a>
+                    <p>Bangladesh's premier platform for writers to showcase their talent, compete in challenges, and gain recognition for their literary works. We celebrate the art of storytelling and the power of words.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/GolperLorai"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/golperlorai/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/golper-lorai-b63885354/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/story"><i class="fas fa-chevron-right"></i> Story</a></li>
+                        <li><a href="/leaderboard"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="/about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/competition-rules"><i class="fas fa-chevron-right"></i> Competition Rules</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Writing Tips</a></li>
+                        <li><a href="/judging-criteria"><i class="fas fa-chevron-right"></i> Judging Criteria</a></li>
+                        <li><a href="/faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="/privacy-policy"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="/refund-policy.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
+                        <li><a href="/qr-campaign.html"><i class="fas fa-chevron-right"></i> Qr-Campaign</a></li>
+                        <li><a href="july-competition.html"><i class="fas fa-chevron-right"></i>July-Competition</a></li>
+                        <li><a href="judge-info.html"><i class="fas fa-chevron-right"></i>Judge-Info</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="mailto:golperlorai.com@gmail.com"><i class="fas fa-envelope"></i> golperlorai.com@gmail.com</a></li>
+                        <li><a href="https://wa.me/8801575139178"><i class="fas fa-phone"></i> +880 015 75139178</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Chattogram, Bangladesh</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <span id="copyright-year"></span> Golper Lorai. All rights reserved. Celebrating the art of storytelling.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // --- Mobile Menu Toggle ---
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.innerHTML = navLinks.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Team Data ---
+        const teamMembers = [
+            { name: "Sabrina Khan", role: "Lead Judge", img: "https://placehold.co/100x100/84A98C/FFFFFF?text=SK", bio: "Championing new voices in Bengali literature." },
+            { name: "Rafiq Siddique", role: "Content Manager", img: "https://placehold.co/100x100/52796F/FFFFFF?text=RS", bio: "Curating the best stories for our readers." },
+            { name: "Nusrat Jahan", role: "Community Lead", img: "https://placehold.co/100x100/354F52/FFFFFF?text=NJ", bio: "Connecting with and supporting our talented writers." }
+        ];
+
+        const teamGrid = document.getElementById('team-grid-container');
+        if (teamGrid) {
+            teamGrid.innerHTML = teamMembers.map(member => `
+                <div class="team-card">
+                    <img src="${member.img}" alt="${member.name}">
+                    <h4>${member.name}</h4>
+                    <p class="role">${member.role}</p>
+                    <p class="bio">"${member.bio}"</p>
+                </div>
+            `).join('');
+        }
+
+        // --- Fade-in Animation on Scroll ---
+        const sections = document.querySelectorAll('.content-section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // --- Set Dynamic Copyright Year ---
+        const yearSpan = document.getElementById('copyright-year');
+        if(yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    });
+    </script>
+</body>
+</ht

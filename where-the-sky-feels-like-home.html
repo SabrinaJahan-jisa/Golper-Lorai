@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golper Lorai - Where the Sky Feels Like Home</title> <!-- Dynamic title based on story -->
+    <!-- Google Fonts: Merriweather for headings, Poppins for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables - DO NOT CHANGE */
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --section-padding: 100px 0;
+        }
+        
+        /* Base Styles - DO NOT CHANGE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Buttons - DO NOT CHANGE */
+        .btn {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.35);
+        }
+        
+        .btn-accent {
+            background-color: var(--yellow);
+            color: var(--black);
+            font-weight: 700;
+        }
+        
+        .btn-accent:hover {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-sm { /* Smaller button for story cards */
+            padding: 10px 25px;
+            font-size: 13px;
+            border-radius: 30px;
+        }
+        
+        /* Header & Navigation - DO NOT CHANGE */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Adds space between image and text */
+        }
+        
+        .logo img {
+            height: 40px; 
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--black);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--yellow);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--yellow);
+            transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active::after { /* Active link indicator */
+            width: 100%;
+        }
+
+        .nav-links a.active { /* Active link color */
+            color: var(--yellow);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: var(--black);
+            z-index: 1001;
+        }
+        
+        /* Section Styling - DO NOT CHANGE */
+        section {
+            padding: var(--section-padding);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-weight: 300;
+        }
+        
+        /* Footer - DO NOT CHANGE */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-logo {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 25px;
+            display: block;
+            letter-spacing: -0.5px;
+        }
+        
+        .footer-logo span {
+            color: var(--yellow);
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h4 {
+            font-size: 1.35rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 300;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--yellow);
+            padding-left: 5px;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+        
+        /* Single Story Page Specific Styles */
+        .single-story-header {
+            background: linear-gradient(120deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.92) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="white"/><path d="M0,0 L200,200 M200,0 L0,200" stroke="%23FFD700" stroke-width="1.2" opacity="0.08"/></svg>');
+            background-size: 180px;
+            padding: 80px 0; /* Reduced padding for header */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--light-gray); /* Separator */
+        }
+        
+        .single-story-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, rgba(255,215,0,0) 70%);
+            z-index: 0;
+        }
+        
+        .single-story-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px; /* Wider for story content */
+            margin: 0 auto;
+        }
+        
+        .single-story-header h1 {
+            font-size: 3.5rem; /* Slightly smaller for single story title */
+            margin-bottom: 25px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            color: var(--black);
+        }
+        
+        .single-story-author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center author info */
+            margin-bottom: 20px;
+        }
+
+        .single-story-author-avatar {
+            width: 60px; /* Larger avatar */
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700 0%, #FFC000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--black);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .single-story-author-name {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .single-story-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center meta items */
+            gap: 15px 30px; /* Increased gap */
+            margin-bottom: 30px;
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .single-story-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .single-story-meta-item i {
+            color: var(--yellow);
+            font-size: 1em;
+        }
+
+        .single-story-share-button {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: inline-flex; /* For icon and text alignment */
+            align-items: center;
+            gap: 8px;
+        }
+
+        .single-story-share-button:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.35);
+        }
+
+        /* Main Story Content Area */
+        .story-main-content {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+
+        .story-text {
+            max-width: 800px; /* Optimal width for reading */
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--dark-gray);
+            text-align: justify; /* Justify text for better readability */
+        }
+
+        .story-text h2, .story-text h3, .story-text h4 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+        }
+
+        .story-text ul, .story-text ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        .story-text li {
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Design - DO NOT CHANGE */
+        @media (max-width: 1100px) {
+            .single-story-header h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 300px;
+                height: 100vh;
+                padding: 100px 40px 40px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0 0 25px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .single-story-header {
+                padding: 100px 0 70px;
+            }
+            
+            .single-story-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            section { /* Reduced padding for smaller screens */
+                 padding: 60px 0; /* Adjusted for single story content */
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .single-story-header {
+                padding: 80px 0 50px;
+            }
+            
+            .single-story-header h1 {
+                font-size: 2rem;
+            }
+            
+            .single-story-author-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .single-story-author-avatar {
+                margin-right: 0;
+            }
+
+            .single-story-meta {
+                flex-direction: column; /* Stack meta items vertically on very small screens */
+                gap: 8px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-links h4 {
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .single-story-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.05rem;
+            }
+
+            .logo-text {
+                display: none; /* Hide logo text on very small screens */
+            }
+            .story-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <!-- Using a placeholder image as local paths are not supported in this environment -->
+                    <img src="https://placehold.co/40x40/FFD700/121212?text=GL" alt="Golper Lorai Logo">
+                    <span class="logo-text">Golper<span>Lorai</span></span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/story" class="active">Story</a></li> <!-- Active class for current page -->
+                    <li><a href="/leaderboard">Leaderboard</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Single Story Header Section (Page Header / Story Meta Info) -->
+    <section class="single-story-header">
+        <div class="container">
+            <div class="single-story-header-content">
+                <h1>Where the Sky Feels Like Home</h1> <!-- Story Title -->
+                <div class="single-story-author-info">
+                    <div class="single-story-author-avatar">AR</div> <!-- Placeholder for author initials -->
+                    <span class="single-story-author-name">Areebah Rayann Rahman</span> <!-- Author Name -->
+                </div>
+                <div class="single-story-meta">
+                    <span class="single-story-meta-item"><i class="fas fa-bookmark"></i> Big Story</span> <!-- Category -->
+                    <span class="single-story-meta-item"><i class="fas fa-globe"></i> English</span> <!-- Language -->
+                    <span class="single-story-meta-item"><i class="fas fa-file-word"></i> 7000 Words</span> <!-- Placeholder Word Count -->
+                    <span class="single-story-meta-item"><i class="fas fa-calendar-alt"></i> Published on July 16, 2025</span> <!-- Published Date -->
+                </div>
+                <button class="single-story-share-button" onclick="copyStoryLink('/story/where-the-sky-feels-like-home')">
+                    <i class="fas fa-share-alt"></i> Share Story
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Story Content Area -->
+    <section class="story-main-content">
+        <div class="container">
+            <div class="story-text">
+                <h2>Chapter 1: The Familiar Stranger</h2>
+                <p>Chiang Khan always smelled like earth and jasmine after a rainfall. It was a small town settled by the mighty Mekong River. It wasn't as widely known as other parts of Bangkok, but it was rich in culture and history. The narrow streets were lined with wooden houses and creaky porches that hadn’t changed since childhood, at least, not in Anan’s memory.</p>
+                <p>He hadn’t been back in nearly ten years. He didn’t want to be back now.</p>
+                <p>But the hospital in Bangkok had said there was nothing else they could do. “Take time off. Rest. Prepare,” they’d said. As if going blind was something you could plan for, like retirement or a long vacation.</p>
+                <p>The truth was, Anan wasn’t resting. He was hiding from the reality of it all.</p>
+                <p>He had come back to his grandmother’s empty house, left with old photo frames, peeling paint, and a bed that smelled faintly of mothballs. He didn’t bother to open the windows, nor did he answer any calls or messages. He just existed in silence as time passed painfully slowly, and then came the knock.</p>
+                <p>He didn’t answer it at first, let them go away, he thought. But the knock came again, soft, patient yet almost hesitant.</p>
+                <p>When he opened the door, he saw her, Pimsiri.</p>
+                <p>She hadn’t changed much. From what he could faintly make out, her hair was longer, pulled into a loose braid over her shoulder, and she wore a loose white blouse tucked into faded jeans. She smiled as if it hadn't been ten years since they last spoke.</p>
+                <p>“I heard you came back,” she said, shifting the small basket in her hands. “Thought you might like some mango sticky rice.”</p>
+                <p>Anan blinked at her. The blur of her shape, the softness of her voice, it all seemed so nostalgic, almost comforting in a way.</p>
+                <p>“You’re still here?” he asked.</p>
+                <p>Pimsiri chuckled. “Some of us never left.”</p>
+                <p>She held out the basket. He took it without much thought, murmured a thank you, and started to close the door.</p>
+                <p>“Wait,” she said quickly. “I’m not… I mean, I wasn’t just bringing food. I wanted to ask…how are you? Really?”</p>
+                <p>He hesitated. He hadn’t had a real conversation in weeks. Not since the diagnosis had worsened. Not since the light had started shrinking at the edges of his vision.</p>
+                <p>“I’m fine,” he lied.</p>
+                <p>She didn’t believe him. But she didn’t push either. That was something about Pimsiri he remembered; she never forced anything. She just stayed.</p>
+                <p>“Can I sit with you for a while?” she asked gently.</p>
+                <p>He shrugged, “If you want.”</p>
+                <p>They sat on the small porch steps. The sky above was beginning to blush with twilight.</p>
+                <p>She didn’t ask about his vision... not yet.</p>
+                <p>Instead, she asked, “Do you remember the old swing behind my house?”</p>
+                <p>He nodded, “You used to hog it every evening.”</p>
+                <p>“You never said anything.”</p>
+                <p>“I didn’t need to, you always knew.”,  she said.</p>
+                <p>The conversation flowed easily, but beneath it was a tension neither of them addressed. Anan’s silence and Pimsiri’s glances. They both carried something unsaid.</p>
+                <p>After a while, she stood up.</p>
+                <p>“I’m glad you’re back,” she said softly.</p>
+                <p>He didn’t respond, and she didn’t expect him to.</p>
+                <p>Before she left, she added, “If you ever feel like seeing the sunrise again... I walk to the hilltop every morning. I record the sounds and describe them. For fun. You're welcome to come.”</p>
+                <p>He looked at her, or at least toward her voice. “Why would I want to do that?”</p>
+                <p>“Because some things are still worth waking up for.”</p>
+                <p>With that, she left.</p>
+                <p>Anan sat there long after the sun went down. He didn't eat the sticky rice, nor did he move. He just sat with the weight of the day. But something lingered….a feeling he hadn’t felt in a long time.</p>
+                <p>Was the jasmine air or was her voice, or  aybe, just maybe, it was the start of something warm cracking through the darkness.</p>
+
+                <h2>Chapter 2: The First Light</h2>
+                <p>The morning air was thinner on the hilltop. Not cold, just quiet. It was like the world hadn’t woken up yet.</p>
+                <p>Pimsiri stood at the edge of the rise, recorder in hand. She glanced back to see if Anan had stopped again. He hadn’t, however , his steps were a lot slower than hers but still steady and focused. He paused several times to breathe, feel , and take in what the world truly had to offer.</p>
+                <p>“You okay?” she asked softly.</p>
+                <p>“Yeah,” he said breathlessly. “I just didn’t remember the hill being so steep.”</p>
+                <p>“It's been a while since you’ve been out, I see, she chuckled. “Don’t worry, we’re nearly there.”</p>
+                <p>They reached the top just as the sunlight began to stretch across the sky. It wasn’t dramatic, no blazing reds or burning golds, just shades of soft pastel pinks and orange hugging the sky above them.</p>
+                <p>They both stood there in silence, processing the beauty around them. Pimsiri turned on the recorder.</p>
+                <p>“Day two,” she said into the mic. “It’s quiet today. Even the birds are late. The river looks like it’s sleeping. Pale blue sky, pink clouds…it's like we are the only two people on this Earth.”</p>
+                <p>She glanced at Anan. He stood beside her, eyes open but unfocused. He was facing the light he couldn’t fully see.</p>
+                <p>She continued, her voice gentler now. “There’s something fragile about this kind of light. Like it could disappear if you blink too long. It’s not something you see every day, just one aspect of God's beautiful creations.”</p>
+                <p>Anan exhaled slowly. “You make it sound better than it probably is.”</p>
+                <p>“No…” she said, voice barely above a whisper. “I'll just tell you how it feels.”</p>
+                <p>They sat down on a patch of grass. Neither of them said anything. Pimsiri let the recorder keep running, making sure to capture the sound of leaves rustling, birds chirping, and the wind singing. She would send him the audio later. It may seem silly, but it made him listen and…feel, which was the only thing that mattered.</p>
+                <p>“You used to love mornings,” she said.</p>
+                <p>He nodded. “Yeh…but that was before the lights started going out..”</p>
+                <p>She didn’t ask for more. He appreciated that.</p>
+                <p>Instead, she asked something else. “Do you ever miss who you were?”</p>
+                <p>That made him pause. He thought of the version of himself who played guitar at local events, stayed out late, and laughed too loud. He was the life of the party…that version felt like a stranger now, one he could never be.</p>
+                <p>“Sometimes, I guess, mostly I’m just tired of pretending I’m still him," he said.</p>
+                <p>Pimsiri nodded. Her hair fell in front of her face, and she tilted her head.  “I get what you mean.”</p>
+                <p>“Do you?”</p>
+                <p>She hesitated.</p>
+                <p>“I used to think if I smiled enough, I’d become who people wanted me to be... more importantly, the person who my parents... forced me to be,” she admitted, eyes on the sky. “But it doesn’t work like that.”</p>
+                <p>He glanced at her,  “So this smiley, morning hiking girl who records the sky isn’t really you?”</p>
+                <p>“Oh, it is,” she said with a small laugh. “I think it's the only part of me that is actually real because I know there’s no one to judge me…I'm free to feel and be who I am, you know..”</p>
+                <p>Something about the way she said it made his chest ache.</p>
+                <p>“You’re weird,” he muttered.</p>
+                <p>“You’re grumpy,” she said, smiling.</p>
+                <p>They both laughed.</p>
+                <p>Pimsiri leaned back on her hands. Her legs stretched in front of her. “You know… I think people think healing is some  big moment where everything changes, but sometimes it’s just this…sitting on a hill and breathing.”</p>
+                <p>Anan looked down at his hands. He rubbed his thumb over a faded scar on the side of his palm. It was one of many nights he didn’t talk about. A painful memory of the fights he had with himself.</p>
+                <p>He didn’t say Anthon, but Pimsiri noticed.</p>
+                <p>She turned the recorder off. Silence filled the air again, not the awkward kind, just honest.</p>
+                <p>“You know,” Anan said low voice, “I didn’t think I’d be here for much longer.”</p>
+                <p>She didn’t look at him, she honestly couldn’t.</p>
+                <p>“Here, like in Chiang Khan?” she asked carefully.</p>
+                <p>He shook his head.</p>
+                <p>“Here it's like anywhere…”</p>
+                <p>The words felt heavy. He hadn’t planned to say them. But maybe the light made him braver, or maybe she did.</p>
+                <p>She didn’t cry or reach for him. She just stayed and then said softly, “I’m glad you are.”</p>
+                <p>He turned to her slowly, “Why?”</p>
+                <p>Pimsiri looked at him, then for a moment she forgot to hold up the mask she wore.</p>
+                <p>“Because I think the world would be dimmer without you,” she whispered.</p>
+                <p>They didn’t speak after that. They just sat. Two people carrying too much and saying too little, trying to remember what it felt like to be whole once again.</p>
+                <p>As the sun climbed higher, Anan tilted his face up, taking in the warmth on his skin. It was still there. Maybe he couldn’t see it, but he could definitely feel it, and for the first time in a long time, that felt like enough.</p>
+
+                <h2>Chapter 3: Places You Can’t See</h2>
+                <p>The wind blew gently. Anan sat on an old rickety bench on his porch. His eyes, although mostly dull, always followed the shadowy outlines of everything around him. His vision degraded each day, so he tried to experience the world as much as he could. Light had once been colors and shapes. Now, it just felt like a vague presence, kind of like the feeling of someone standing just behind you.</p>
+                <p>“I brought something,” Pimsiri’s voice called softly. Anan could hear her footsteps making her way to the  ooden porch front.</p>
+                <p>He tilted his head. A small smile played at the corner of his mouth. “Is it another weird fruit?”, he teased. She laughed before placing a small pouch in his hand, “Nope, they’re headphones.”</p>
+                <p>He opened them slowly, feeling the cord. “Ohh …. what’s this for?”</p>
+                <p>“I started editing the recordings so you can carry them with you… even when I’m not around,” she said before sitting beside him.</p>
+                <p>Anan’s breath caught.</p>
+                <p>She was always doing that. Adding light without ever asking if he wanted it.</p>
+                <p>“I went to that old temple yesterday,” she continued.  “You know, the one your mom used to make you pray for every New Year?”</p>
+                <p>“The one with the cracked golden Buddha?”</p>
+                <p>She smiled. “Yeah, that’s the one. The paints are all flaky now, but the sunlight hit it just right when I was there today, and it looked like the gold was melting into the earth.”</p>
+                <p>She paused, eyes faraway. “I described it for you. It's in the recording.”</p>
+                <p>Anan put the headphones on without a wor,d and for the next few minute,s he wasn’t in his body anymore…he was where she had been. Her voice painted for him not just an image, but the feeling. Her descriptions were more than words, they were memories capturing moments perfectly.</p>
+                <p>When the recording ended, he didn’t speak for a while, then quietly he asked, “How do you make it sound so alive?”</p>
+                <p>Pimsiri looked at him, her voice almost a whisper, “Because I want you to live it.”</p>
+                <p>His fingers curled slightly around the cord, I’m trying.”</p>
+                <p>She looked down at her hands. “Yeah, me too.”</p>
+                <p>He turned his head toward her, but she didn’t elaborate; instead, she changed the subject.</p>
+                <p>“Want to go somewhere tomorrow?”</p>
+                <p>“Where?”</p>
+                <p>“Somewhere neither of us has seen in a long time. I found a place with flowers that still bloom in this heat.”</p>
+                <p>“Do you think I’ll be able to see them?”</p>
+                <p>“No..,” she said honestly. “But I’ll describe every pedal.” He chuckled under his breath, “Then I guess I will.”</p>
+                <p>Silence stretched between them, but it wasn’t uncomfortable. It was the kind that only people who knew each other deeply could share, and in that silence, Pimsiri thought about her own secret. How she had once stood at the edge of her apartment rooftop, fingers curled tightly around the cold railing. She was too afraid to step forward but too empty to step back.</p>
+                <p>She never told anyone, not even her parents, not the school counselor who saw through her smiles…not even Anan. But maybe that’s why she was here now. Maybe saving someone else was the only way she knew how to keep herself breathing.</p>
+                <p>The next day came with a soft rain, but Pimsiri didn’t cancel. She brought an umbrella and an extra set of sandals for Anan. The path was muddy,dy but he didn’t seem to mind.</p>
+                <p>As she led him through the dense trees, her voice recorded every step.</p>
+                <p>“Raindrops slide down the leaves like shooting stars in the sky. The soil is soft, and it smells like old memories. The kind you bury … but never forget.”</p>
+                <p>They reached a meadow bursting with beautiful pink blossoms. The world around them was so quiet and secluded, making the place feel almost sacred.</p>
+                <p>Anan sat on a dry patch of earth while she spoke softly into the mic, describing each flower in detail - the curl of its petals, the way the raindrops danced down from each petal.</p>
+                <p>“You’re really committed to this,” he murmured.</p>
+                <p>She stopped recording and looked at him.</p>
+                <p>“You deserve beauty,” she said simply. And this time, he didn’t laugh it off; he just whispered, “So do you.”</p>
+                <p>She blinked.</p>
+                <p>The wind stirred around them, lifting fallen petals into the air. A moment so still and fragile. It felt like the earth itself was listening to their conversation.</p>
+                <p>In that space, Anan finally allowed himself to believe it. Maybe beauty wasn’t something you had to see, but something you felt.</p>
+                <p>To Anan, beauty and peace were in her voice …. .in the warmth of the rain ….in the quiet hope of two broken people choosing day after day to stay.</p>
+
+                <h2>Chapter 4: Beneath the Surface</h2>
+                <p>Anan had started to memorize time by the angle of the light. Even if he couldn’t see it, he could feel it. It was the warmth in the mornings, the somewhat sleepy noons, and the golden afternoons. Toda, however, there was a chill in the air T he kind that makes you want to stay in and sip on warm tea.</p>
+                <p>He sat under the same tree they had visited last week, headphones tucked into his ears while listening to Pimsiri’s voice paint worlds for him.</p>
+                <p>"There’s a bird here. Its feathers are blue, but not like the sky, more like the ocean. I think it’s singing for you."</p>
+                <p>Her voice trembled slightly in the recording, but he didn’t notice at first. It wasn’t until later, when the recording stopped abruptly, that he realized something was off.</p>
+                <p>When Pimsiri arrived, her hair was tied loosely, and her clothes looked thrown together, like she hadn’t slept properly. She handed him a bottle of iced tea and sat beside him without her usual brightness.</p>
+                <p>“You okay?” he asked.</p>
+                <p>“Yeah,” she said, a little too quickly.</p>
+                <p>He tilted his head. “Your voice cracked in the last recording…were you crying?”</p>
+                <p>She looked away. “It was windy. Probably just sounded like that.”</p>
+                <p>“Pimsiri.” His voice was gentle but firm: “Talk to me.”</p>
+                <p>For a moment, it looked like she might shut down. Usually, she would retreat into the same smile she always wore when she didn’t want to explain herself, but today she didn’t.</p>
+                <p>“Do you remember when we were kids?” she began, voice quieter than usual. “Your mom used to bake banana bread and give it to our family?”</p>
+                <p>Anan nodded.</p>
+                <p>“I used to lie about liking it.” She laughed, but there was no humor in it. “I just wanted an excuse to come over. “Your house felt safe. My parents were always yelling, breaking things, then apologizing, only to yell again. I never really knew what version of them I'd come home to.”</p>
+                <p>Anan said nothing. He just heard what she had to say.</p>
+                <p>“I used to hide under my bed and pretend I lived in your house instead.”</p>
+                <p>He turned toward her, not expecting that. “You always seemed so happy, though, he murmured.</p>
+                <p>“That’s the trick. If you smile enough, people stop asking if you’re okay.”</p>
+                <p>He felt the weight in her voice, the tears she was holding back.</p>
+                <p>“I wasn’t okay,” she continued, slightly more freely now. “Not for a long time. I tried to be perfect. Top grades, polite, helpful , but inside... I didn’t want to wake up.”</p>
+                <p>The words sat heavily between them.</p>
+                <p>“I almost didn’t,” she added after a long pause. “A year ago, I stood on a rooftop and thought maybe it would be better if I disappeared.”</p>
+                <p>Anan’s throat tightened.</p>
+                <p>“But then I thought about you,” she said looking down to the floor. “You were the only constant. Even when you were pulling away from everyone else, you were still here , still fighting. I realized I didn’t want to go. Not without knowing if we could find something better..together.”</p>
+                <p>The breath he let out sounded shaky.</p>
+                <p>“You saved me…even without knowing.” , she said quietly.</p>
+                <p>Anan opened his mouth to speak but no words came out.</p>
+                <p>He thought of her smile. It was always sunny and radiant.Now he realized it wasn’t bright at all , just a mask.</p>
+                <p>“I’m sorry,” he whispered finally. “I didn’t see it.”</p>
+                <p>“You weren’t supposed to,” she said. “I didn’t want you to.”</p>
+                <p>They sat quietly, the weight of their truths finally shared.</p>
+                <p>Then Anan took her hand slow and unsure, but she held it tightly.</p>
+                <p>“Thank you…” he said.</p>
+                <p>“For what?”</p>
+                <p>“For showing me that even the people who shine the brightest can be carrying storms.”</p>
+                <p>She smiled , this time soft and genuine, without its usual performance. “And even storms can bring flowers.”</p>
+                <p>They stayed under the tree for hours, not saying much, just existing beside each other.</p>
+                <p>“I used to think if I said the truth out loud, it would break me,” Pimsiri murmured. “But now that I have... I just feel lighter.”</p>
+                <p>Anan squeezed her hand, “Me too.”</p>
+                <p>“Promise me something?” she asked suddenly.</p>
+                <p>“Anything.”</p>
+                <p>“When the world gets too heavy again and when the dark thoughts come back, don’t carry them alone. Let me be the voice that helps you through.”</p>
+                <p>He nodded, voice low. “Only if you do the same.”</p>
+                <p>She smiled again, but this one reached her eyes.</p>
+                <p>Later that night, Pimsiri uploaded a new recording onto Anan’s device.</p>
+                <p>He listened to it in bed, headphones tucked in, heart still raw from the earlier conversation.</p>
+                <p>"The stars are out tonight," her voice whispered. "And the sky looks like it’s holding its breath. There’s something truly beautiful about it , like it knows morning will come, even if it takes a little longer sometimes."</p>
+                <p>Anan closed his eyes and for the first time in months, sleep came easily.</p>
+
+                <h2>Chapter 5: When Light Fades</h2>
+                <p>The world had already started to blur at the edges for Anan long ago. Colors bleeding into shadows and faces melting into mere silhouettes. But on that morning, when he woke and saw only a hazy wall of gray, he knew the time had come..</p>
+                <p>He rubbed his eyes furiously, blinking fast, hoping something… anything really would  come back into focus.</p>
+                <p>Nothing.</p>
+                <p>He sat on the edge of his bed, hands trembling as he reached for the object on his nightstand. It was a small carved elephant Pimsiri had given him years ago. His fingers fumbled, knocking it off. The  thud when it hit the floor echoed too loud in the silence of the room.He didn’t cry. He just sat there frozen.</p>
+                <p>A knock on the door came, it was soft. “Anan?” Pimsiri’s voice called out. “I brought mangoes. Your favorite.”</p>
+                <p>He couldn’t bring himself to answer.The door creaked open anyway.</p>
+                <p>“I know you’re awake. You always pretend to sleep when you’re sad,” she teased lightly , unaware of what had just happened.</p>
+                <p>He stayed still, then slowly turned his head toward her voice, “I can’t see you anymore.”</p>
+                <p>The smile slipped from her face, "What do you mean?”</p>
+                <p>“I mean…it’s gone.” His voice cracked. “Everything. There’s no color left. No light. Just… gray.”</p>
+                <p>Pimsiri crossed the room in three steps, kneeling in front of him.</p>
+                <p>She didn’t say it’s going to be okay.</p>
+                <p>She didn’t say you’ll adjust.</p>
+                <p>She simply took his hands in hers and held them to her cheeks.“I’m right here…even if you can’t see me,” she said softly.</p>
+                <p>That afternoon, she walked with him to the riverside , the place they used to go as kids. He trailed his fingers along the railing.</p>
+                <p>“I recorded a new one,” she said, guiding him to the bench they always sat on.</p>
+                <p>She placed the earphones into his ears.</p>
+                <p>“Today, the water is gold. Not yellow ,not orange , just pure gold. The sky blends in so seamlessly with the water forming the most beautiful gradient and there are children laughing. One boy’s trying to catch dragonflies in his hands. He’s failing but he still looks happy anyway.”</p>
+                <p>Anan leaned back, eyes closed, breathing it in.</p>
+                <p>“I think, if you could see this, you’d say it’s too beautiful to be real. But I swear it is and I’ll keep telling you about it every single day, so you never miss a thing.”</p>
+                <p>When the recording ended, he sat silently for a long time , then he asked, “Why are you doing this?”</p>
+                <p>Pimsiri tilted her head. “Doing what?”</p>
+                <p>“Staying.”</p>
+                <p>That word staying carried so much weight. He didn’t mean physically. He meant emotionally…he meant staying for someone who is simply fading away…..</p>
+                <p>She didn’t answer right away. Instead, she pulled out something from her bag. It was a  small recorder. She placed it in his palm.</p>
+                <p>“Your turn,” she said.</p>
+                <p>“What?”</p>
+                <p>“Describe what you feel. What you hear , smell , taste. Tell me about the world from your point of view.”</p>
+                <p>“I… I wouldn’t know what to say.”</p>
+                <p>“That’s okay. Just start small.”</p>
+                <p>He held the recorder in both hands, unsure. Then slowly, he pressed record.</p>
+                <p>“The wind smells like salt. There’s a dog barking somewhere to the left. Probably chasing pigeons. Your perfume is faint, but I know it - Jasmine. You always wear it when you’re trying to act brave.”</p>
+                <p>Pimsiri smiled through a tear,  “That’s beautiful.”</p>
+                <p>He handed it back, uncertain. “I’m still scared.”</p>
+                <p>“So am I…every day.” she said quietly</p>
+                <p>He turned his head toward her, “Why?”</p>
+                <p>“Because I’ve spent my whole life pretending to be okay,” she said, her voice low and raw. “Pretending I was happy even when I wasn’t. But you… you’ve never asked me to pretend. You just saw me.”</p>
+                <p>Anan frowned. “You’re the one who saved me.”</p>
+                <p>“No…” she said, touching his hand, “You reminded me that even in the darkest moments, there's something , someone worth staying for.”</p>
+                <p>They sat together in the fading light of the day.</p>
+                <p>Pimsiri gently took his hand and traced it across the surface of the river railing.</p>
+                <p>"Feel that?" she asked.</p>
+                <p>"The rust?"</p>
+                <p>"No, the stories." She smiled faintly. "Every chip, every crack. This spot has held us for years. It remembers."</p>
+                <p>He nodded. “You’re the only light I’ve ever felt without seeing.”</p>
+                <p>She leaned into his shoulder. “Then maybe we’re both each other’s sky.”</p>
+                <p>The next morning, they woke early before the sun had even risen.</p>
+                <p>Pimsiri led him to a hill overlooking the valley, the air still cool and damp. She laid out a blanket, sat beside him and took out the recorder again.</p>
+                <p>“This one’s not just for you,” she whispered. “It’s for both of us.”</p>
+                <p>He nodded, holding her hand tightly.</p>
+                <p>As the sun crept over the horizon, she began to speak.</p>
+                <p>“There’s a peach hue over everything. The clouds look like cotton candy . The light is shy , kinda like it's peeking out slowly. It’s soft and gentle , like you. And the trees are whispering to each other.”</p>
+                <p>Anan’s eyes brimmed with tears, but he didn’t let them fall.</p>
+                <p>“I don’t think the world ever really goes dark ,we just forget how to look for the light.”</p>
+                <p>He turned his head towards the warmth he felt on his face. He couldn’t see the sunrise but he didn’t need to. She was there ….. and in her presence, he found the sky again.</p>
+
+                <h2>Chapter 6: The Morning After Light</h2>
+                <p>The last sunrise they shared had long since faded from the sky, but Anan remembered how it felt. Not the way it looked as he could no longer see color or light , but the way the warmth had touched his face, the softness in Pimsiri’s voice as she described it and how just for a moment, everything had felt whole.But as the days went by, he began to notice little changes in her.</p>
+                <p>She would go quiet when he spoke too hopefully. Her laughs, though still bright, ended too quickly. Sometimes, she would stay up late, and he’d hear the soft click of her recorder being replayed in the middle of the night.</p>
+                <p>He asked her once, “Do you still record the skies when I’m not there?”</p>
+                <p>“I do,but not always to describe them.”, she said</p>
+                <p>That answer stayed with him for some reason.</p>
+                <p>One late evening, after a long day of listening to her describe the local temple ,including the bells, the incense and the monks chanting , he said suddenly, “You never talk about yourself.”</p>
+                <p>Pimsiri froze mid-step. They were walking down the old pathway near the river, where broken lanterns still hung from the last festival.</p>
+                <p>“I do,” she replied a little too casually.</p>
+                <p>“You don’t,” he insisted. “You talk about the world. About beauty. About me. Never you.”</p>
+                <p>She sighed, her fingers tightening around him. “Because I don’t know how to describe myself.”</p>
+                <p>Anan tilted his head toward her. “Try…Please.”</p>
+                <p>She didn’t respond right away , then she stopped walking.</p>
+                <p>“I used to be really good at hiding, so good that I forgot what it felt like to be seen.I was the top student ,the ‘perfect daughter’ ,the one who always smiled, always performed, always pleased. People loved the version of me that didn’t exist.”</p>
+                <p>“Your parents?” he asked gently.</p>
+                <p>She hesitated. “They split before I turned ten. I lived with my mother, who told me to always smile for people and that no one liked a girl who cried. My dad, well he forgot birthdays , missed graduations and you know just faded out of my life at one point. But both of them needed me to be okay. So I became…well okay…or at least I pretended.”</p>
+                <p>Anan felt his chest tighten.</p>
+                <p>“I thought about ending it,” she said suddenly.</p>
+                <p>“I was seventeen, it was after school. I went to the same riverbank where we’re standing now. I had the recorder with me.I was going to leave a goodbye.” she said somewhat distant.</p>
+                <p>His grip on her hand tightened.</p>
+                <p>“But then,” she continued, “I saw someone sitting alone…you …you had those dark glasses on for the first time and you were trying to draw something, even though your eyes were failing. I remember thinking, ‘How can someone still try to create beauty when everything is disappearing?’”</p>
+                <p>Tears slipped silently down Anan’s cheeks.</p>
+                <p>“I sat next to you that day,” she said. “You didn’t know who it was. But I watched your hands shake as you drew lines that didn’t make sense, yet you still  smiled, like you hadn’t given up.”</p>
+                <p>“I had,” Anan whispered.</p>
+                <p>“So had I,” Pimsiri said. “But you were the only familiar thing in my entire world. You felt like home. And something inside me whispered that maybe…maybe we could both stay. Just a little longer.”</p>
+                <p>Anan reached out, pulling her into a tight embrace. “I never knew.”</p>
+                <p>“You weren’t supposed to,” she murmured. “You already had enough pain.”</p>
+                <p>In the days that followed, something shifted between them.</p>
+                <p>There was no longer just sunshine in their voices, no more carefully wrapped warmth. They began to talk about the bad days too…about insomnia,self-doubt and what it meant to want to disappear while also wanting someone to stop you.</p>
+                <p>Anan began to record his days , telling her what he smelled, heard, felt. He described how the rain felt like needles one day and a lullaby the next. He recorded how her voice changed when she was tired and how it steadied when she lied.</p>
+                <p>Pimsiri would listen every night ,sometimes crying while others laughing.</p>
+                <p>And then came that day…the one where she didn’t show up.</p>
+                <p>Not in the morning ,not by noon , not even at their usual evening bench. Anan sat alone with the recorder in his hand, anxiety creeping in.He waited until the moon rose before finally going home.</p>
+                <p>The next morning, there was a knock at his door.It wasn’t her.It was her mother.</p>
+                <p>“She left this for you,” she said before handing him a small package wrapped in old newspaper.</p>
+                <p>His heart froze , “Where is she?”</p>
+                <p>“She left last night. For Chiang Mai. She didn’t tell me why.”</p>
+                <p>He opened the package with shaking hands .Inside was a recorder and a note.</p>
+                <p>Anan,<br>I’m sorry I left without saying goodbye. I didn’t want you to hear the shaking in my voice.I realized something I’ve been avoiding.I need to heal, not just survive and I can’t lean on you for that.You’ve given me more than you know ..your time, your trust, your pain. I started living again because you did but I need to learn to live without hiding behind your light.So I’m going away for a while ,to learn who I am outside of being strong for others but I left this for you. Play it when you’re ready.<br>—Pimsiri</p>
+                <p>It took Anan two days to find the courage then, sitting by the river alone, he pressed play.</p>
+                <p>“If you’re listening to this then I’ve probably already left. I’m sorry, Anan. I hate this too. But I need you to hear this.<br>When I first came back to this town, I wasn’t looking for anything. Not friends , not love and definitely not hope.But you - you made everything feel soft again. Like I wasn’t a burden and I wasn’t broken.You said once that I was the light in your darkness,but what you never saw was how much darkness you walked me out of.I’m not leaving forever ,  I just need to learn to be okay… even when I’m alone.<br>Promise me one thing?Keep describing the world even if it hurts . Even if no one’s listening, because it’s still beautiful…and so are you.”</p>
+                <p>Weeks passed.Anan began recording again. Not just for her but for himself as well. He described the world as it felt and he sent them to her. Not every day , just when it mattered.Sometimes she replied ,sometimes she didn’t.But the silence was never empty ,it was full of healing.</p>
+                <p>One year later, he stood on the same hilltop where they had once watched their last sunrise.</p>
+                <p>He couldn’t see it, but he felt it .The air was full of light and then he heard footsteps.He smiled before she even spoke.</p>
+                <p>“You didn’t describe this morning,” she teased gently.</p>
+                <p>“I was waiting for you to do it.”</p>
+                <p>She laughed, breathless, tears in her voice.</p>
+                <p>“The sun is golden, Anan. It’s warm and slow and lazy. Like it missed us. The sky is pale pink, and the clouds look like pieces of sugar candy.”</p>
+                <p>“The world’s still beautiful. And so are you.”</p>
+                <p>“I found myself again. And you were the reason I started looking.”</p>
+                <p>He reached for her hand and in that moment though the world was dark, he wasn’t<br>She was there.<br>They were home.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Golper<span>Lorai</span></a>
+                    <p>Your premier platform for writing competitions and discovering captivating stories from Bangladesh's most talented writers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/story"><i class="fas fa-chevron-right"></i> Stories</a></li>
+                        <li><a href="/leaderboard"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="/about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Get In Touch</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</a></li>
+                        <li><a href="mailto:info@golperlorai.com"><i class="fas fa-envelope"></i> info@golperlorai.com</a></li>
+                        <li><a href="tel:+8801234567890"><i class="fas fa-phone"></i> +880 1234 567890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Golper Lorai. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for hamburger menu - copied from index.html logic
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav menu when a link is clicked (for mobile)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Function to copy story link to clipboard
+        function copyStoryLink(slug) {
+            const fullUrl = window.location.origin + slug;
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = fullUrl;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            // In a real application, you might show a small "Link Copied!" message
+            console.log('Link copied: ' + fullUrl);
+            alert('Story link copied to clipboard!'); // Using alert for demonstration, replace with custom modal in production
+        }
+    </script>
+</body>
+</html>

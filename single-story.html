@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golper Lorai - The Enigma of the Old Mansion</title> <!-- Dynamic title based on story -->
+    <!-- Google Fonts: Merriweather for headings, Poppins for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables - DO NOT CHANGE */
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --section-padding: 100px 0;
+        }
+        
+        /* Base Styles - DO NOT CHANGE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Buttons - DO NOT CHANGE */
+        .btn {
+            display: inline-block;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.35);
+        }
+        
+        .btn-accent {
+            background-color: var(--yellow);
+            color: var(--black);
+            font-weight: 700;
+        }
+        
+        .btn-accent:hover {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-sm { /* Smaller button for story cards */
+            padding: 10px 25px;
+            font-size: 13px;
+            border-radius: 30px;
+        }
+        
+        /* Header & Navigation - DO NOT CHANGE */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Adds space between image and text */
+        }
+        
+        .logo img {
+            height: 40px; 
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--black);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--yellow);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--yellow);
+            transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active::after { /* Active link indicator */
+            width: 100%;
+        }
+
+        .nav-links a.active { /* Active link color */
+            color: var(--yellow);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: var(--black);
+            z-index: 1001;
+        }
+        
+        /* Section Styling - DO NOT CHANGE */
+        section {
+            padding: var(--section-padding);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-weight: 300;
+        }
+        
+        /* Footer - DO NOT CHANGE */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-logo {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 25px;
+            display: block;
+            letter-spacing: -0.5px;
+        }
+        
+        .footer-logo span {
+            color: var(--yellow);
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h4 {
+            font-size: 1.35rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+            color: var(--white);
+        }
+        
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--yellow);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 300;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--yellow);
+            padding-left: 5px;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+        
+        /* Single Story Page Specific Styles */
+        .single-story-header {
+            background: linear-gradient(120deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.92) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="white"/><path d="M0,0 L200,200 M200,0 L0,200" stroke="%23FFD700" stroke-width="1.2" opacity="0.08"/></svg>');
+            background-size: 180px;
+            padding: 80px 0; /* Reduced padding for header */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--light-gray); /* Separator */
+        }
+        
+        .single-story-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, rgba(255,215,0,0) 70%);
+            z-index: 0;
+        }
+        
+        .single-story-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px; /* Wider for story content */
+            margin: 0 auto;
+        }
+        
+        .single-story-header h1 {
+            font-size: 3.5rem; /* Slightly smaller for single story title */
+            margin-bottom: 25px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            color: var(--black);
+        }
+        
+        .single-story-author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center author info */
+            margin-bottom: 20px;
+        }
+
+        .single-story-author-avatar {
+            width: 60px; /* Larger avatar */
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700 0%, #FFC000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--black);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .single-story-author-name {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .single-story-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center meta items */
+            gap: 15px 30px; /* Increased gap */
+            margin-bottom: 30px;
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .single-story-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .single-story-meta-item i {
+            color: var(--yellow);
+            font-size: 1em;
+        }
+
+        .single-story-share-button {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: inline-flex; /* For icon and text alignment */
+            align-items: center;
+            gap: 8px;
+        }
+
+        .single-story-share-button:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.35);
+        }
+
+        /* Main Story Content Area */
+        .story-main-content {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+
+        .story-text {
+            max-width: 800px; /* Optimal width for reading */
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--dark-gray);
+            text-align: justify; /* Justify text for better readability */
+        }
+
+        .story-text h2, .story-text h3, .story-text h4 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+        }
+
+        .story-text ul, .story-text ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+
+        .story-text li {
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Design - DO NOT CHANGE */
+        @media (max-width: 1100px) {
+            .single-story-header h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 300px;
+                height: 100vh;
+                padding: 100px 40px 40px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0 0 25px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .single-story-header {
+                padding: 100px 0 70px;
+            }
+            
+            .single-story-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            section { /* Reduced padding for smaller screens */
+                 padding: 60px 0; /* Adjusted for single story content */
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .single-story-header {
+                padding: 80px 0 50px;
+            }
+            
+            .single-story-header h1 {
+                font-size: 2rem;
+            }
+            
+            .single-story-author-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .single-story-author-avatar {
+                margin-right: 0;
+            }
+
+            .single-story-meta {
+                flex-direction: column; /* Stack meta items vertically on very small screens */
+                gap: 8px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-links h4 {
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .single-story-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.05rem;
+            }
+
+            .logo-text {
+                display: none; /* Hide logo text on very small screens */
+            }
+            .story-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <!-- Using a placeholder image as local paths are not supported in this environment -->
+                    <img src="https://placehold.co/40x40/FFD700/121212?text=GL" alt="Golper Lorai Logo">
+                    <span class="logo-text">Golper<span>Lorai</span></span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/story" class="active">Story</a></li> <!-- Active class for current page -->
+                    <li><a href="/leaderboard">Leaderboard</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Single Story Header Section (Page Header / Story Meta Info) -->
+    <section class="single-story-header">
+        <div class="container">
+            <div class="single-story-header-content">
+                <h1>The Enigma of the Old Mansion</h1> <!-- Story Title -->
+                <div class="single-story-author-info">
+                    <div class="single-story-author-avatar">AH</div>
+                    <span class="single-story-author-name">Anika Hassan</span> <!-- Author Name -->
+                </div>
+                <div class="single-story-meta">
+                    <span class="single-story-meta-item"><i class="fas fa-bookmark"></i> Short Story</span> <!-- Category -->
+                    <span class="single-story-meta-item"><i class="fas fa-globe"></i> English</span> <!-- Language -->
+                    <span class="single-story-meta-item"><i class="fas fa-file-word"></i> 2500 Words</span> <!-- Word Count -->
+                    <span class="single-story-meta-item"><i class="fas fa-calendar-alt"></i> Published on July 16, 2025</span> <!-- Published Date -->
+                </div>
+                <button class="single-story-share-button" onclick="copyStoryLink('/story/the-enigma-of-the-old-mansion')">
+                    <i class="fas fa-share-alt"></i> Share Story
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Story Content Area -->
+    <section class="story-main-content">
+        <div class="container">
+            <div class="story-text">
+                <p>The old mansion stood on the hill, a skeletal silhouette against the bruised twilight sky. Locals whispered tales of its former inhabitants, of fortunes lost and secrets buried deep within its crumbling walls. Detective Rahman, a man whose life had been a relentless pursuit of truth, felt an inexplicable pull towards its decaying grandeur. The air was thick with the scent of damp earth and forgotten memories as he pushed open the creaking iron gates.</p>
+                
+                <p>His flashlight beam cut through the oppressive darkness of the foyer, illuminating dust motes dancing in the stale air. Cobwebs clung like ancient lace to chandeliers that once glittered with a thousand lights. Rahman had seen many abandoned places, but this one felt different. It hummed with a quiet, unsettling energy, as if the very stones held their breath, waiting for something to be revealed.</p>
+
+                <h2>The Whispers of the Past</h2>
+                <p>He moved through the grand halls, each step echoing loudly in the silence. In the library, books lay scattered, their pages brittle with age, hinting at lives filled with knowledge and leisure. A half-finished game of chess sat on a table in the drawing-room, pieces frozen in time, a silent testament to an abrupt departure. What happened here? What caused such a sudden, complete abandonment?</p>
+
+                <p>Rahman found the first clue in the master bedroom. Tucked beneath a loose floorboard, a small, leather-bound diary. Its pages, though yellowed, were filled with elegant script, detailing the life of a young woman named Elara. Her entries spoke of love, betrayal, and a growing fear of a "shadow" that crept through the mansion at night. The last entry was dated exactly fifty years ago to the day.</p>
+
+                <h3>Unraveling the Mystery</h3>
+                <p>As Rahman delved deeper into Elara's words, a tragic tale unfolded. A hidden love affair, a jealous sibling, and a dark family secret that threatened to consume them all. The "shadow" was not a ghost, but a tangible threat, a person driven by greed and a desperate desire to control the family's vast wealth. Elara's final words hinted at a hidden passage, a place where the truth was concealed.</p>
+
+                <p>Armed with this new knowledge, Rahman meticulously searched the mansion again. He found the hidden passage behind a false bookshelf in the library, exactly where Elara's cryptic notes suggested. It led to a small, secret room, untouched by time. Inside, he found a strongbox containing legal documents that exposed the true culprit behind the family's disappearance and the mansion's abandonment.</p>
+
+                <p>The truth, once hidden in the shadows, now shone brightly. Rahman had solved the enigma of the old mansion, bringing peace to the long-lost souls and justice to those who had been wronged. As he left the mansion, the setting sun cast a golden glow upon its walls, as if finally, after half a century, it could breathe again.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Golper<span>Lorai</span></a>
+                    <p>Your premier platform for writing competitions and discovering captivating stories from Bangladesh's most talented writers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/story"><i class="fas fa-chevron-right"></i> Stories</a></li>
+                        <li><a href="/leaderboard"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="/about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Get In Touch</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</a></li>
+                        <li><a href="mailto:info@golperlorai.com"><i class="fas fa-envelope"></i> info@golperlorai.com</a></li>
+                        <li><a href="tel:+8801234567890"><i class="fas fa-phone"></i> +880 1234 567890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Golper Lorai. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for hamburger menu - copied from index.html logic
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav menu when a link is clicked (for mobile)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Function to copy story link to clipboard
+        function copyStoryLink(slug) {
+            const fullUrl = window.location.origin + slug;
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = fullUrl;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            // In a real application, you might show a small "Link Copied!" message
+            console.log('Link copied: ' + fullUrl);
+            alert('Story link copied to clipboard!'); // Using alert for demonstration, replace with custom modal in production
+        }
+    </script>
+</body>
+</html>

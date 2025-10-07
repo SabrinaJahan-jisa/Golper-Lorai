@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judging Criteria - Golper Lorai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: var(--black); background-color: var(--white); line-height: 1.7; font-weight: 400; }
+        h1, h2, h3, h4, h5 { font-family: 'Merriweather', serif; font-weight: 700; line-height: 1.3; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Header & Navigation (Copied from Homepage) --- */
+        header { background-color: var(--white); box-shadow: 0 2px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 0 20px; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+        .logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 32px; color: var(--black); letter-spacing: -0.5px; }
+        .logo span { color: var(--yellow); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 40px; }
+        .nav-links a { text-decoration: none; color: var(--black); font-weight: 500; font-size: 16px; transition: color 0.3s; position: relative; padding: 5px 0; }
+        .nav-links a:hover { color: var(--yellow); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--yellow); transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); }
+        .nav-links a:hover::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 26px; color: var(--black); z-index: 1001; }
+
+        /* --- Footer (Copied from Homepage) --- */
+        footer { background-color: var(--black); color: var(--white); padding: 100px 0 40px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 32px; margin-bottom: 25px; display: block; letter-spacing: -0.5px; }
+        .footer-logo span { color: var(--yellow); }
+        .footer-about p { color: rgba(255, 255, 255, 0.7); margin-bottom: 30px; font-size: 1.05rem; line-height: 1.8; font-weight: 300; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.08); color: var(--white); transition: all 0.3s ease; font-size: 18px; }
+        .social-links a:hover { background-color: var(--yellow); color: var(--black); transform: translateY(-3px); }
+        .footer-links h4 { font-size: 1.35rem; margin-bottom: 25px; position: relative; padding-bottom: 12px; font-family: 'Poppins', sans-serif; color: var(--white); }
+        .footer-links h4::after { content: ''; position: absolute; width: 50px; height: 3px; background-color: var(--yellow); bottom: 0; left: 0; border-radius: 2px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: rgba(255, 255, 255, 0.7); transition: color 0.3s; font-weight: 300; display: block; padding: 5px 0; }
+        .footer-links a:hover { color: var(--yellow); padding-left: 5px; }
+        .footer-links a i { margin-right: 10px; width: 20px; text-align: center; }
+        .copyright { text-align: center; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 0.95rem; font-weight: 300; }
+        
+        /* --- Styles for Judging Criteria Page --- */
+        .page-header { padding: 100px 0; text-align: center; background-color: var(--white); }
+        .page-header h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .page-header p { font-size: 1.2rem; color: var(--dark-gray); max-width: 650px; margin: 0 auto; font-weight: 300; }
+
+        .content-section { padding: 0 0 100px; }
+        .section-title { text-align: center; margin-bottom: 70px; }
+        .section-title h2 { font-size: 2.8rem; position: relative; display: inline-block; padding-bottom: 15px; }
+        .section-title h2::after { content: ''; position: absolute; width: 100px; height: 4px; background-color: var(--yellow); bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 2px; }
+
+        .intro-paragraph {
+            max-width: 800px;
+            margin: 0 auto 70px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-gray);
+        }
+        
+        .criteria-table-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        .criteria-table-header, .criteria-table-row {
+            display: grid;
+            grid-template-columns: 2fr 3fr 1fr;
+            gap: 20px;
+            padding: 20px 30px;
+            align-items: center;
+        }
+        .criteria-table-header {
+            background-color: var(--gray);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark-gray);
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .criteria-table-row {
+            border-bottom: 1px solid #f0f0f0;
+        }
+         .criteria-table-row:last-child {
+            border-bottom: none;
+        }
+        .criteria-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .criteria-desc {
+            color: #555;
+            font-size: 1rem;
+        }
+        .criteria-score {
+            font-weight: 700;
+            font-size: 1.5rem;
+            font-family: 'Merriweather', serif;
+            text-align: center;
+        }
+        
+        .team-section { background-color: var(--gray); margin-top: 100px; padding: 100px 0;}
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .team-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--light-gray);
+        }
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 4px solid var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .team-card h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        .team-card .role {
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 900px) {
+            .nav-links { position: fixed; top: 0; right: -100%; flex-direction: column; background-color: var(--white); width: 300px; height: 100vh; padding: 100px 40px 40px; transition: right 0.4s ease; box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08); z-index: 1000; }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 0 0 25px 0; }
+            .hamburger { display: block; }
+        }
+        @media (max-width: 768px) {
+            .criteria-table-header { display: none; }
+            .criteria-table-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 25px;
+                text-align: center;
+            }
+            .criteria-score {
+                background: var(--yellow);
+                color: var(--black);
+                border-radius: 50px;
+                padding: 5px 15px;
+                margin-top: 10px;
+                display: inline-block;
+                font-size: 1.2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 0 20px; }
+            .page-header { padding: 80px 0; }
+            .page-header h1 { font-size: 2.5rem; }
+            .content-section, .team-section { padding: 80px 0; }
+            .section-title h2 { font-size: 2.2rem; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-links h4::after { left: 50%; transform: translateX(-50%); }
+            .social-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Golper<span>Lorai</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="stories.html">Story</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Judging Criteria</h1>
+                <p>Learn how we score your stories and meet the judges.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <p class="intro-paragraph">
+                    At Golper Lorai, every story is reviewed carefully by our panel of experienced judges. To ensure fairness and quality, we use a standardized 100-point evaluation system based on multiple storytelling elements.
+                </p>
+
+                <div class="criteria-table-wrapper">
+                    <div class="criteria-table-header">
+                        <div>Criterion</div>
+                        <div>Description</div>
+                        <div style="text-align:center;">Score</div>
+                    </div>
+                    <div id="criteria-list">
+                        <!-- Criteria will be injected here by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Meet the Judges</h2>
+                </div>
+                <div class="team-grid" id="judges-grid-container">
+                    <!-- Judges will be injected by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Golper<span>Lorai</span></a>
+                    <p>Bangladesh's premier platform for writers to showcase their talent, compete in challenges, and gain recognition for their literary works. We celebrate the art of storytelling and the power of words.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/GolperLorai"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/golperlorai/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/golper-lorai-b63885354/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="/story"><i class="fas fa-chevron-right"></i> Story</a></li>
+                        <li><a href="/leaderboard"><i class="fas fa-chevron-right"></i> Leaderboard</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="/about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/competition-rules"><i class="fas fa-chevron-right"></i> Competition Rules</a></li>
+                        <li><a href="/blog"><i class="fas fa-chevron-right"></i> Writing Tips</a></li>
+                        <li><a href="/judging-criteria"><i class="fas fa-chevron-right"></i> Judging Criteria</a></li>
+                        <li><a href="/faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="/privacy-policy"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="/refund-policy.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
+                        <li><a href="/qr-campaign.html"><i class="fas fa-chevron-right"></i> Qr-Campaign</a></li>
+                        <li><a href="july-competition.html"><i class="fas fa-chevron-right"></i>July-Competition</a></li>
+                        <li><a href="judge-info.html"><i class="fas fa-chevron-right"></i>Judge-Info</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="mailto:golperlorai.com@gmail.com"><i class="fas fa-envelope"></i> golperlorai.com@gmail.com</a></li>
+                        <li><a href="https://wa.me/8801575139178"><i class="fas fa-phone"></i> +880 015 75139178</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Chattogram, Bangladesh</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <span id="copyright-year"></span> Golper Lorai. All rights reserved. Celebrating the art of storytelling.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // --- Mobile Menu Toggle ---
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.innerHTML = navLinks.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Data for the page ---
+        const criteria = [
+            { name: "Creativity", desc: "Originality, imagination, and unique concept.", score: 20 },
+            { name: "Story Structure", desc: "Coherent beginning, middle, end, and effective pacing.", score: 15 },
+            { name: "Character Development", desc: "Depth, growth, and clarity of the characters.", score: 15 },
+            { name: "Grammar & Spelling", desc: "Correct use of language, punctuation, and overall readability.", score: 10 },
+            { name: "Emotional Impact", desc: "The story's ability to move or engage the reader emotionally.", score: 15 },
+            { name: "Message or Moral", desc: "Clarity and power of the underlying theme or takeaway.", score: 10 },
+            { name: "Language Use", desc: "Expressiveness, elegance of writing, and use of literary devices.", score: 15 }
+        ];
+
+        const judges = [
+            { name: "Sabrina Khan", role: "Lead Judge", img: "https://placehold.co/120x120/84A98C/FFFFFF?text=SK" },
+            { name: "Rafiq Siddique", role: "Literary Critic", img: "https://placehold.co/120x120/52796F/FFFFFF?text=RS" },
+            { name: "Anis Ahmed", role: "Guest Judge (Previous Winner)", img: "https://placehold.co/120x120/354F52/FFFFFF?text=AA" }
+        ];
+
+        const criteriaList = document.getElementById('criteria-list');
+        const judgesGrid = document.getElementById('judges-grid-container');
+
+        // Render Judging Criteria Table
+        criteriaList.innerHTML = criteria.map(item => `
+            <div class="criteria-table-row">
+                <div class="criteria-name">${item.name}</div>
+                <div class="criteria-desc">${item.desc}</div>
+                <div class="criteria-score">${item.score}</div>
+            </div>
+        `).join('');
+
+        // Render Judges Section
+        judgesGrid.innerHTML = judges.map(judge => `
+            <div class="team-card">
+                <img src="${judge.img}" alt="${judge.name}">
+                <h4>${judge.name}</h4>
+                <p class="role">${judge.role}</p>
+            </div>
+        `).join('');
+    });
+    </script>
+</body>
+</html>

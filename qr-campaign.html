@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Golper Lorai – Scan, Explore, Write</title>
+    <!-- SEO Metadata -->
+    <meta name="description" content="Discover Golper Lorai – Bangladesh’s story-writing platform. Join competitions, read stories, and follow the journey.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Google Fonts: Poppins for headings, Lato for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --yellow: #FFD700;
+            --white: #FFFFFF;
+            --black: #121212;
+            --gray: #F8F9FA;
+            --dark-gray: #444444;
+            --light-gray: #e0e0e0;
+            --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --section-padding: 60px 0; /* Adjusted for game levels */
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
+            font-weight: 400;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full height */
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px; /* Slightly narrower for game focus */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex; /* Use flex for icon alignment */
+            align-items: center;
+            justify-content: center;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            gap: 10px; /* Space between icon and text */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.35);
+        }
+        
+        .btn-accent {
+            background-color: var(--yellow);
+            color: var(--black);
+            font-weight: 700;
+        }
+        
+        .btn-accent:hover {
+            background-color: var(--black);
+            color: var(--white);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Game Container */
+        .game-container {
+            flex-grow: 1; /* Allows container to fill available space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(120deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="white"/><path d="M0,0 L200,200 M200,0 L0,200" stroke="%23FFD700" stroke-width="1.2" opacity="0.08"/></svg>');
+            background-size: 180px;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 0; /* Add some padding */
+        }
+
+        /* Subtle floating elements for visual effect */
+        .game-container::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+        .game-container::before {
+            content: '';
+            position: absolute;
+            bottom: 15%;
+            right: 8%;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(255, 215, 0, 0.08);
+            border-radius: 50%;
+            animation: float 12s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(10px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        /* Level Styling */
+        .game-level {
+            text-align: center;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            position: absolute; /* Position levels on top of each other */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateY(20px);
+            visibility: hidden; /* Hide completely when not active */
+        }
+
+        .game-level.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(0);
+            visibility: visible;
+        }
+
+        /* Level 1: Choose Role */
+        #level1 h1 {
+            font-size: 3.8rem;
+            margin-bottom: 40px;
+            color: var(--black);
+        }
+        #level1 .role-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        #level1 .role-buttons .btn {
+            padding: 20px 30px;
+            font-size: 1.2rem;
+            text-transform: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        #level1 .role-buttons .btn i {
+            font-size: 1.5em;
+        }
+
+        /* Level 2: Welcome */
+        #level2 h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+        #level2 p {
+            font-size: 1.4rem;
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            line-height: 1.5;
+        }
+        #level2 .text-reveal span {
+            opacity: 0;
+            display: inline-block; /* Keep words on same line */
+            transform: translateY(10px);
+        }
+        #level2 .text-reveal span.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.05s ease-out, transform 0.05s ease-out; /* Faster transition for typewriter effect */
+        }
+
+        /* Level 3: Unlock Path */
+        #level3 h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--black);
+        }
+        #level3 .achievement-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .achievement-card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 180px; /* Consistent height */
+        }
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        .achievement-card i {
+            font-size: 3.5rem;
+            color: var(--yellow);
+            margin-bottom: 15px;
+        }
+        .achievement-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+        .achievement-card p {
+            font-size: 0.95rem;
+            color: var(--dark-gray);
+            margin-bottom: 0;
+        }
+        /* Unlock animation */
+        .achievement-card.unlocked {
+            animation: unlockGlow 0.8s ease-out forwards;
+        }
+        @keyframes unlockGlow {
+            0% { box-shadow: var(--card-shadow); }
+            50% { box-shadow: 0 0 30px 10px rgba(255, 215, 0, 0.6), var(--hover-shadow); }
+            100% { box-shadow: var(--hover-shadow); }
+        }
+
+        /* Level 4: Final Achievement */
+        #level4 h2 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: var(--black);
+        }
+        #level4 .final-cta-btn {
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            border-radius: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        #level4 .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 30px 0; /* Smaller footer */
+            text-align: center;
+            margin-top: auto; /* Push to bottom */
+        }
+
+        .footer-quote {
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-logo-small {
+            height: 25px;
+            width: auto;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 10px;
+        }
+
+        /* Audio Controls */
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .audio-controls button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--black);
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        .audio-controls button:hover {
+            color: var(--yellow);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 30px 0;
+            }
+            #level1 h1 {
+                font-size: 2.8rem;
+            }
+            #level1 .role-buttons .btn {
+                font-size: 1rem;
+                padding: 15px 25px;
+            }
+            #level2 h2 {
+                font-size: 2.2rem;
+            }
+            #level2 p {
+                font-size: 1.1rem;
+            }
+            #level3 h2 {
+                font-size: 2rem;
+            }
+            .achievement-card {
+                min-height: auto;
+                padding: 20px;
+            }
+            .achievement-card i {
+                font-size: 3rem;
+            }
+            .achievement-card h4 {
+                font-size: 1.2rem;
+            }
+            .achievement-card p {
+                font-size: 0.85rem;
+            }
+            #level4 h2 {
+                font-size: 2.5rem;
+            }
+            #level4 .final-cta-btn {
+                font-size: 1.2rem;
+                padding: 15px 30px;
+            }
+            #level4 .quote {
+                font-size: 1rem;
+            }
+            .footer-quote {
+                font-size: 0.9rem;
+            }
+            .footer-copyright {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #level1 h1 {
+                font-size: 2.2rem;
+            }
+            #level1 .role-buttons {
+                max-width: 250px;
+            }
+            #level1 .role-buttons .btn {
+                font-size: 0.9rem;
+                padding: 12px 20px;
+            }
+            #level2 h2 {
+                font-size: 1.8rem;
+            }
+            #level2 p {
+                font-size: 1rem;
+            }
+            #level3 h2 {
+                font-size: 1.6rem;
+            }
+            .achievement-card i {
+                font-size: 2.5rem;
+            }
+            .achievement-card h4 {
+                font-size: 1.1rem;
+            }
+            #level4 h2 {
+                font-size: 2rem;
+            }
+            #level4 .final-cta-btn {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <!-- Level 1: Choose Your Role -->
+        <div id="level1" class="game-level active">
+            <img src="https://placehold.co/60x60/FFD700/121212?text=GL" alt="Golper Lorai Logo" class="logo-small">
+            <h1>🎉 You’ve discovered Golper Lorai!</h1>
+            <p style="font-size: 1.5rem; color: var(--dark-gray); margin-bottom: 40px;">Who are you?</p>
+            <div class="role-buttons">
+                <button class="btn btn-accent" data-role="writer"><i class="fas fa-pen-nib"></i> I’m a Writer</button>
+                <button class="btn" data-role="reader"><i class="fas fa-book-open"></i> I’m a Reader</button>
+                <button class="btn" data-role="teacher"><i class="fas fa-user-tie"></i> I’m a Teacher</button>
+            </div>
+        </div>
+
+        <!-- Level 2: Welcome to Your World -->
+        <div id="level2" class="game-level">
+            <h2 class="text-reveal"></h2>
+            <p class="text-reveal"></p>
+            <button class="btn btn-accent" id="continueBtn" style="margin-top: 30px; display: none;">Continue</button>
+        </div>
+
+        <!-- Level 3: Unlock Your Path -->
+        <div id="level3" class="game-level">
+            <h2>Ready to begin your journey?</h2>
+            <div class="achievement-cards">
+                <div class="achievement-card" data-link="/story">
+                    <i class="fas fa-book-reader"></i>
+                    <h4>Read Stories</h4>
+                    <p>Discover original stories by new voices.</p>
+                </div>
+                <div class="achievement-card" data-link="/july-competition-2025">
+                    <i class="fas fa-trophy"></i>
+                    <h4>Join the Competition</h4>
+                    <p>Submit your story and win big.</p>
+                </div>
+                <div class="achievement-card" data-link="/for-teachers">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h4>Meet the Judges</h4>
+                    <p>Learn about our expert panel.</p>
+                </div>
+                <div class="achievement-card" data-link-facebook="https://www.facebook.com/yourgolperloraipage" data-link-instagram="https://www.instagram.com/yourgolperloraipage">
+                    <i class="fas fa-share-alt"></i>
+                    <h4>Follow Us</h4>
+                    <p>Stay updated on Facebook & Instagram.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 4: Final Achievement -->
+        <div id="level4" class="game-level">
+            <h2>🎉 You’ve completed the discovery quest!</h2>
+            <a href="/" class="btn btn-accent final-cta-btn">🔘 Start Your Journey</a>
+            <p class="quote">“Every great writer was once a reader. Start your story with us.”</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <img src="https://placehold.co/25x25/FFD700/121212?text=GL" alt="Golper Lorai Logo" class="footer-logo-small">
+            <span class="footer-copyright">&copy; 2025 Golper Lorai. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Audio Elements -->
+    <audio id="clickSound" src="https://www.soundjay.com/buttons/button-2.mp3" preload="auto"></audio>
+    <audio id="bgMusic" src="https://www.soundjay.com/ambient/ambient-music-1.mp3" loop preload="auto"></audio>
+
+    <!-- Audio Controls -->
+    <div class="audio-controls">
+        <button id="musicToggle"><i class="fas fa-music"></i></button>
+    </div>
+
+    <script>
+        const levels = {
+            level1: document.getElementById('level1'),
+            level2: document.getElementById('level2'),
+            level3: document.getElementById('level3'),
+            level4: document.getElementById('level4')
+        };
+
+        const roleButtons = document.querySelectorAll('#level1 .role-buttons .btn');
+        const level2Title = document.querySelector('#level2 h2');
+        const level2Subtitle = document.querySelector('#level2 p');
+        const continueButton = document.getElementById('continueBtn');
+        const achievementCards = document.querySelectorAll('#level3 .achievement-card');
+
+        const clickSound = document.getElementById('clickSound');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+
+        let currentLevel = 1;
+        let selectedRole = '';
+        let isMusicPlaying = false;
+
+        // Function to play sound
+        function playSound(audioElement) {
+            if (audioElement) {
+                audioElement.currentTime = 0; // Rewind to start
+                audioElement.play().catch(e => console.log("Audio play prevented:", e));
+            }
+        }
+
+        // Music toggle functionality
+        musicToggle.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else {
+                bgMusic.play().catch(e => console.log("Background music play prevented:", e));
+                musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+
+        // Initial music state (optional: play on user interaction)
+        document.addEventListener('DOMContentLoaded', () => {
+             // Attempt to play music after a small delay or user interaction
+             // This can help bypass browser autoplay policies
+             setTimeout(() => {
+                 bgMusic.volume = 0.3; // Set a lower volume
+                 // bgMusic.play().catch(e => console.log("Background music autoplay prevented:", e));
+                 // isMusicPlaying = true;
+             }, 1000);
+        });
+
+
+        // Function to transition between levels
+        function transitionToLevel(levelId) {
+            Object.values(levels).forEach(level => {
+                level.classList.remove('active');
+            });
+            levels[levelId].classList.add('active');
+        }
+
+        // Text reveal animation for Level 2
+        function revealText(element, text, speed = 50) {
+            element.innerHTML = ''; // Clear existing content
+            const words = text.split(' ');
+            let charIndex = 0;
+            let wordIndex = 0;
+
+            function animate() {
+                if (wordIndex < words.length) {
+                    const word = words[wordIndex];
+                    const span = document.createElement('span');
+                    span.textContent = word + ' '; // Add space back
+                    element.appendChild(span);
+
+                    // Trigger reflow to ensure animation works for each span
+                    span.offsetWidth; 
+
+                    span.classList.add('revealed');
+                    wordIndex++;
+                    setTimeout(animate, speed);
+                } else {
+                    continueButton.style.display = 'inline-flex'; // Show continue button after text is revealed
+                }
+            }
+            animate();
+        }
+
+        // Level 1: Role Selection
+        roleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                playSound(clickSound);
+                selectedRole = button.dataset.role;
+                
+                let titleText = '';
+                let subtitleText = '';
+
+                if (selectedRole === 'writer') {
+                    titleText = "Welcome, Writer!";
+                    subtitleText = "Golper Lorai is your stage. Join monthly competitions, express yourself, and win recognition.";
+                } else if (selectedRole === 'reader') {
+                    titleText = "Welcome, Reader!";
+                    subtitleText = "Explore original stories by writers across Bangladesh — in Bangla and English.";
+                } else if (selectedRole === 'teacher') {
+                    titleText = "Welcome, Educator!";
+                    subtitleText = "Help judge, mentor, and uplift the next generation of storytellers.";
+                }
+
+                transitionToLevel('level2');
+                // Small delay before revealing text to allow level transition to complete
+                setTimeout(() => {
+                    revealText(level2Title, titleText, 80);
+                    revealText(level2Subtitle, subtitleText, 50);
+                }, 600); // Adjust delay as needed
+            });
+        });
+
+        // Level 2: Continue to Level 3
+        continueButton.addEventListener('click', () => {
+            playSound(clickSound);
+            transitionToLevel('level3');
+        });
+
+        // Level 3: Achievement Cards
+        achievementCards.forEach(card => {
+            card.addEventListener('click', () => {
+                playSound(clickSound);
+                card.classList.add('unlocked'); // Trigger unlock animation
+
+                const link = card.dataset.link;
+                const facebookLink = card.dataset.linkFacebook;
+                const instagramLink = card.dataset.linkInstagram;
+
+                // Small delay to allow unlock animation to start
+                setTimeout(() => {
+                    if (link) {
+                        window.location.href = link;
+                    } else if (facebookLink || instagramLink) {
+                        if (facebookLink) window.open(facebookLink, '_blank');
+                        if (instagramLink) window.open(instagramLink, '_blank');
+                    }
+                    // If this is the "Follow Us" card, it doesn't transition to level 4 automatically
+                    // User can tap other cards or it implies they've completed that action.
+                    // For simplicity in this game flow, let's transition to Level 4 after any card click
+                    // or specifically after the "Follow Us" card if it's the last action.
+                    // For now, let's make it transition to Level 4 after any card click.
+                    transitionToLevel('level4');
+                }, 500); // Delay for animation
+            });
+        });
+
+        // Initial setup: Ensure only Level 1 is active on load
+        transitionToLevel('level1');
+    </script>
+</body>
+</html>
